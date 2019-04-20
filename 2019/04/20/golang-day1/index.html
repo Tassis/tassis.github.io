@@ -96,20 +96,20 @@
 
 
 
-  <meta name="description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。 初始化 Golang 專案以往撰寫 Golang專案需要將專案放置在 GOPATH 環境變數下（或者將專案資料夾放入 GOPATH 內部）才能夠正常的讀取套件，但於 1.11 版後提供了 go mod 指令，用於初始化專">
+  <meta name="description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。">
 <meta name="keywords" content="golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Golang 初學筆記（一） on Ubuntu 16.04">
 <meta property="og:url" content="http://tassis.me/2019/04/20/golang-day1/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。 初始化 Golang 專案以往撰寫 Golang專案需要將專案放置在 GOPATH 環境變數下（或者將專案資料夾放入 GOPATH 內部）才能夠正常的讀取套件，但於 1.11 版後提供了 go mod 指令，用於初始化專">
+<meta property="og:description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://media.tassis.me/golang-day1/1555737894932.png">
 <meta property="og:image" content="http://media.tassis.me/golang-day1/1555738144642.png">
-<meta property="og:updated_time" content="2019-04-20T07:36:57.778Z">
+<meta property="og:updated_time" content="2019-04-20T07:48:59.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang 初學筆記（一） on Ubuntu 16.04">
-<meta name="twitter:description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。 初始化 Golang 專案以往撰寫 Golang專案需要將專案放置在 GOPATH 環境變數下（或者將專案資料夾放入 GOPATH 內部）才能夠正常的讀取套件，但於 1.11 版後提供了 go mod 指令，用於初始化專">
+<meta name="twitter:description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。">
 <meta name="twitter:image" content="http://media.tassis.me/golang-day1/1555737894932.png">
 
 
@@ -347,7 +347,7 @@
                 
               
 
-              <time title="創建時間：2019-04-20 13:00:33 / 修改時間：15:36:57" itemprop="dateCreated datePublished" datetime="2019-04-20T13:00:33+08:00">2019-04-20</time>
+              <time title="創建時間：2019-04-20 13:00:33 / 修改時間：15:48:59" itemprop="dateCreated datePublished" datetime="2019-04-20T13:00:33+08:00">2019-04-20</time>
             
 
             
@@ -412,6 +412,7 @@
 
       
         <p>研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。</p>
+<a id="more"></a>
 <h2 id="初始化-Golang-專案"><a href="#初始化-Golang-專案" class="headerlink" title="初始化 Golang 專案"></a>初始化 Golang 專案</h2><p>以往撰寫 Golang專案需要將專案放置在 GOPATH 環境變數下（或者將專案資料夾放入 GOPATH 內部）才能夠正常的讀取套件，但於 1.11 版後提供了 go mod 指令，用於初始化專案，可使專案不用在放置於 GOPATH 內部。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir &lt;projectname&gt;           // 在喜歡的地方創建專案資料夾</span><br><span class="line"><span class="built_in">cd</span> &lt;projectname&gt;              // 切換至專案資料夾內部</span><br><span class="line">go mod init &lt;package_name&gt;    // 使用 go mod init 進行初始化</span><br></pre></td></tr></table></figure>
 <p>這邊要特別提到 package_name 的部份是與專案名稱相同，同時也用於 import 導入。若預定未來會將 package 提交到 github 上面， 可將 package_name 設置如以下結構：</p>
