@@ -342,7 +342,7 @@
                 
               
 
-              <time title="創建時間：2019-04-20 13:00:33 / 修改時間：15:12:36" itemprop="dateCreated datePublished" datetime="2019-04-20T13:00:33+08:00">2019-04-20</time>
+              <time title="創建時間：2019-04-20 13:00:33 / 修改時間：15:36:57" itemprop="dateCreated datePublished" datetime="2019-04-20T13:00:33+08:00">2019-04-20</time>
             
 
             
@@ -424,156 +424,13 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module github.com/tassis/golang-note</span><br><span class="line"><span class="keyword">go</span> <span class="number">1.12</span></span><br><span class="line">require psd2go v0<span class="number">.0</span><span class="number">.0</span></span><br><span class="line">replace psd2go v0<span class="number">.0</span><span class="number">.0</span> =&gt; ./psd2go</span><br></pre></td></tr></table></figure>
 <p>先用運 require 設定依賴的 package ，再透過 replace 手動指定 package 的路徑到想要的位置。 這樣若專案內有好幾個 sub package 便可以透過設定導入進來。</p>
 <h2 id="VSCode-的編譯快捷設定"><a href="#VSCode-的編譯快捷設定" class="headerlink" title="VSCode 的編譯快捷設定"></a>VSCode 的編譯快捷設定</h2><p>Visual Stuido Code 是一個很棒的文本編輯器，透過安裝擴展套件，可以快速的建立輕量級的 IDE ，並透過編寫config 新增 Build Task (默認 ctrl + shift +b 開啟)，可以減少每次編譯時都需要手動輸入編譯指令的問題，節省時間。</p>
-<p><img src="1555737894932.png" alt="1555737894932"></p>
+<p><img src="http://media.tassis.me/golang-day1/1555737894932.png" alt="1555737894932"></p>
 <p>預設沒有 task 的情況下會出現上面的訊息，直接按下 enter 會詢問要使用哪個　task 模板，如下圖：</p>
-<p><img src="1555738144642.png" alt="1555738144642"></p>
+<p><img src="http://media.tassis.me/golang-day1/1555738144642.png" alt="1555738144642"></p>
 <p>由於這邊只需要使用 go build 而已，不需要其他的框架輔助、環境調整，所以選擇 Others 即可。簡易範例：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // See https://go.microsoft.com/fwlink/?LinkId=733558</span><br><span class="line">    // for the documentation about the tasks.json format</span><br><span class="line">    "version": "2.0.0",</span><br><span class="line">    "tasks": [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"build"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"go build"</span>,</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: <span class="string">"$msCompile"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"build and run"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"go build &amp;&amp; ./$(pwd | xargs basename) "</span>,</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: <span class="string">"$msCompile"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>build 的部份，直接運行 go build 指令即可，但 build and run 就稍嫌複雜些，由於 go build 預設會在該目錄底下生成與專案資料夾名稱同名的檔案，因此這邊利用 shell 指令抓取資料夾名稱來做執行。 problemMatcher的部份通常應該用來檢測錯誤的問題，在不填寫的情況下 vscode 會詢問是否要繼續而不檢測編譯結果，因此這邊填入預設值來省去步驟。</p>
 <p>不過這邊做的只是簡單的 build 範例，實際上可以搭配 shell script / bat (windows) 來達到切換 GOPATH 將開發環境獨立的目的。 若有時間的話會繼續將後續研究補上。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/04/20/yee/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tassis">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/38690456?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="＠邊緣沙威瑪">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/20/yee/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-
-              
-                
-              
-
-              <time title="創建時間：2019-04-20 12:25:24 / 修改時間：13:03:55" itemprop="dateCreated datePublished" datetime="2019-04-20T12:25:24+08:00">2019-04-20</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/apple-touch-icon-next-1555734524536.png" alt="apple-touch-icon-next"></p>
 
           
         
@@ -833,7 +690,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">文章</span>
                   </a>
                 </div>
