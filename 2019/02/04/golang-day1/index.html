@@ -96,22 +96,21 @@
 
 
 
-  <meta name="description" content="今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗">
-<meta name="keywords" content="postgrsql,pgadmin4,uwsgi,python,linode,debian,virtualenv,pyenv">
+  <meta name="description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。">
+<meta name="keywords" content="golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Install Pyenv and virtualenv on Debian9">
-<meta property="og:url" content="http://tassis.me/2019/04/20/python-environment-prepare/index.html">
+<meta property="og:title" content="Golang 初學筆記（一） on Ubuntu 16.04">
+<meta property="og:url" content="http://tassis.me/2019/02/04/golang-day1/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗">
+<meta property="og:description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555595010995.png">
-<meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555595658764.png">
-<meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555597727104-1555749772254.png">
-<meta property="og:updated_time" content="2019-04-20T08:55:29.157Z">
+<meta property="og:image" content="http://media.tassis.me/golang-day1/1555737894932.png">
+<meta property="og:image" content="http://media.tassis.me/golang-day1/1555738144642.png">
+<meta property="og:updated_time" content="2019-04-20T08:57:23.854Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Install Pyenv and virtualenv on Debian9">
-<meta name="twitter:description" content="今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗">
-<meta name="twitter:image" content="http://media.tassis.me/python-environment-prepare/1555595010995.png">
+<meta name="twitter:title" content="Golang 初學筆記（一） on Ubuntu 16.04">
+<meta name="twitter:description" content="研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。">
+<meta name="twitter:image" content="http://media.tassis.me/golang-day1/1555737894932.png">
 
 
 
@@ -119,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="http://tassis.me/2019/04/20/python-environment-prepare/">
+  <link rel="canonical" href="http://tassis.me/2019/02/04/golang-day1/">
 
 
 
@@ -129,7 +128,7 @@
   };
 </script>
 
-  <title>Install Pyenv and virtualenv on Debian9 | ＠邊緣沙威瑪</title>
+  <title>Golang 初學筆記（一） on Ubuntu 16.04 | ＠邊緣沙威瑪</title>
   
 
 
@@ -305,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/04/20/python-environment-prepare/">
+    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/02/04/golang-day1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tassis">
@@ -322,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Install Pyenv and virtualenv on Debian9
+          <h1 class="post-title" itemprop="name headline">Golang 初學筆記（一） on Ubuntu 16.04
 
               
             
@@ -348,12 +347,24 @@
                 
               
 
-              <time title="創建時間：2019-04-20 16:20:53 / 修改時間：16:55:29" itemprop="dateCreated datePublished" datetime="2019-04-20T16:20:53+08:00">2019-04-20</time>
+              <time title="創建時間：2019-02-04 13:00:33" itemprop="dateCreated datePublished" datetime="2019-02-04T13:00:33+08:00">2019-02-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2019-04-20 16:57:23" itemprop="dateModified" datetime="2019-04-20T16:57:23+08:00">2019-04-20</time>
               
             
           </span>
@@ -370,7 +381,14 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程式語言/" itemprop="url" rel="index"><span itemprop="name">程式語言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程式語言/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a></span>
 
                 
                 
@@ -405,45 +423,30 @@
       
 
       
-        <p>今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗環境區隔開，而在網路上較為有名的便是 pyenv 及 virtualenv 這兩項工具了，這邊會紀錄下自己準備環境時的步驟及一些筆記。</p>
+        <p>研究 Golang  有一段時間，多少有些心得。  目前操作起來與其他的程式語言有許多不同的地方，還在一步一步的研究中，因此在這邊紀錄下遇到的一些問題，希望未來能夠有些參照對應。</p>
 <a id="more"></a>
-<hr>
-<h2 id="Pyenv-Introduction-amp-Installation"><a href="#Pyenv-Introduction-amp-Installation" class="headerlink" title="Pyenv Introduction &amp; Installation"></a>Pyenv Introduction &amp; Installation</h2><p>pyenv 是一個 python 版本管理器，在開發各項專案的過程中，經常會遇到 A 專案及 B 專案使用的 python 版本不一樣的問題，若每次都需要重新安裝實在太過浪費時間。為了解決這個問題所產生出來的便是這個版本管理器。</p>
+<h2 id="初始化-Golang-專案"><a href="#初始化-Golang-專案" class="headerlink" title="初始化 Golang 專案"></a>初始化 Golang 專案</h2><p>以往撰寫 Golang專案需要將專案放置在 GOPATH 環境變數下（或者將專案資料夾放入 GOPATH 內部）才能夠正常的讀取套件，但於 1.11 版後提供了 go mod 指令，用於初始化專案，可使專案不用在放置於 GOPATH 內部。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir &lt;projectname&gt;           // 在喜歡的地方創建專案資料夾</span><br><span class="line"><span class="built_in">cd</span> &lt;projectname&gt;              // 切換至專案資料夾內部</span><br><span class="line">go mod init &lt;package_name&gt;    // 使用 go mod init 進行初始化</span><br></pre></td></tr></table></figure>
+<p>這邊要特別提到 package_name 的部份是與專案名稱相同，同時也用於 import 導入。若預定未來會將 package 提交到 github 上面， 可將 package_name 設置如以下結構：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">github.com/&#123;account&#125;/&#123;project_name&#125;   # 類似 github 的倉庫路徑</span><br></pre></td></tr></table></figure>
+<p>這樣當 project 提交至 github 後，未來就可以直接使用指令將 package 下載下來使用： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/&#123;account&#125;/&#123;projectname&#125;</span><br></pre></td></tr></table></figure>
+<p>運行 go mod init 指令後，會看到資料夾內部增加了 go.mod 檔案，內容包含 package 名稱及 golang 使用的版本，這樣子就代表初始化完成了。</p>
+<h2 id="導入本地端-Package"><a href="#導入本地端-Package" class="headerlink" title="導入本地端 Package"></a>導入本地端 Package</h2><p>Golang 的 import 機制依賴於 GOPATH ， 系統會自動去查找 GOPATH 下是否有相同名稱的 package 若沒有的話則會顯示：</p>
 <blockquote>
-<p>Github: <a href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener">傳送門</a></p>
+<p>Can’t find module providing package.</p>
 </blockquote>
-<p>而安裝方法也非常的簡單，作者已經提供了一個安裝腳本，讓我們省去手動的步驟。</p>
-<p>可以使用：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://pyenv.run | bash</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure>
-<p>兩個是等效的，不過通常上面的會比較好記。</p>
-<p>備註：若跳出 curl command not found 則必須先使用 sudo apt install curl 將 curl 套件安裝後才可使用。</p>
-<p>安裝完畢後通常視窗訊息如下：</p>
-<p><img src="http://media.tassis.me/python-environment-prepare/1555595010995.png" alt="1555595010995"></p>
-<p>意思為需要將 pyenv 的執行路徑及初始化指令添加進環境變量中。編輯 .bashrc 檔案:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>開啟 bash 設定檔，將以下代碼加入至 .bashrc 文件底部之後儲存。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>之後在 bash 輸入 pyenv  看看若有出現以下畫面就代表配置完成囉。</p>
-<p><img src="http://media.tassis.me/python-environment-prepare/1555595658764.png" alt="1555595658764"></p>
-<p>接下來可以輸入對應的指令來進行 python 版本的安裝。如輸入以下指令來安裝 python 3.6.5 版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.6.5</span><br></pre></td></tr></table></figure>
-<p>並且設定全域的 python 運行環境：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global 3.6.5</span><br></pre></td></tr></table></figure>
-<p>至於如何應用就看大家自己的需求了。</p>
-<h2 id="Pyenv-Virtualenv-Introduction-amp-Installation"><a href="#Pyenv-Virtualenv-Introduction-amp-Installation" class="headerlink" title="Pyenv-Virtualenv Introduction &amp; Installation"></a>Pyenv-Virtualenv Introduction &amp; Installation</h2><p>既然 pyenv 是針對 python 版本的管理器，那 virtualenv 就是針對運行環境的管理器了，我們可以利用 virtualenv 將運行環境的依賴套件獨立出來，方便開發、測試以及保持運行環境的乾淨。</p>
-<p>而 pyenv 也有透過將 virtualenv 作為插件功能整合進來。若是使用上面官方的 pyenv-installer 進行安裝的話則會一起安裝進來。若沒有的話則必須要手動將其 clone 至 plugin 資料夾內。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv</span><br></pre></td></tr></table></figure>
-<p>完成後於 .bashrc 檔案中，增加以下代碼後存檔：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
-<p>就設定完成了。 在確定 pyenv 有安裝 python 版本後，便可以透過 pyenv virtaulenv 指令來建立運行環境：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假定已經安裝了 python 3.6.5 則可以運行以下指令建立名稱為 pgadmin 的環境。</span></span><br><span class="line">pyenv install 3.6.5 pgadmin</span><br></pre></td></tr></table></figure>
-<p><img src="http://media.tassis.me/python-environment-prepare/1555597727104-1555749772254.png" alt="1555597727104"></p>
-<p>只要顯示如上訊息便表示環境建立完成。</p>
-<p>接下來就可以透過以下指令切換運行環境了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global pgadmin</span><br></pre></td></tr></table></figure>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>在有許多 python 專案的情況下，透過 pyenv 及 virtaulenv 可以很輕鬆的達到將運行環境分離開來，避免版本衝突、套件混亂等情況。在開發專案、環境部署上都方便了不少，可以說是一大利器。在確定虛擬環境夠建完成後就可以輸入依據自己的需求直接使用 pip 安裝套件了。</p>
+<p>因此倘若在專案中存在著自己撰寫的幾個子套件並且未放置於 GOPATH 下的話，會無法 import 入專案內，需要另外在 go.mod 檔案進行配置，內容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module github.com/tassis/golang-note</span><br><span class="line"><span class="keyword">go</span> <span class="number">1.12</span></span><br><span class="line">require psd2go v0<span class="number">.0</span><span class="number">.0</span></span><br><span class="line">replace psd2go v0<span class="number">.0</span><span class="number">.0</span> =&gt; ./psd2go</span><br></pre></td></tr></table></figure>
+<p>先用運 require 設定依賴的 package ，再透過 replace 手動指定 package 的路徑到想要的位置。 這樣若專案內有好幾個 sub package 便可以透過設定導入進來。</p>
+<h2 id="VSCode-的編譯快捷設定"><a href="#VSCode-的編譯快捷設定" class="headerlink" title="VSCode 的編譯快捷設定"></a>VSCode 的編譯快捷設定</h2><p>Visual Stuido Code 是一個很棒的文本編輯器，透過安裝擴展套件，可以快速的建立輕量級的 IDE ，並透過編寫config 新增 Build Task (默認 ctrl + shift +b 開啟)，可以減少每次編譯時都需要手動輸入編譯指令的問題，節省時間。</p>
+<p><img src="http://media.tassis.me/golang-day1/1555737894932.png" alt="1555737894932"></p>
+<p>預設沒有 task 的情況下會出現上面的訊息，直接按下 enter 會詢問要使用哪個　task 模板，如下圖：</p>
+<p><img src="http://media.tassis.me/golang-day1/1555738144642.png" alt="1555738144642"></p>
+<p>由於這邊只需要使用 go build 而已，不需要其他的框架輔助、環境調整，所以選擇 Others 即可。簡易範例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // See https://go.microsoft.com/fwlink/?LinkId=733558</span><br><span class="line">    // for the documentation about the tasks.json format</span><br><span class="line">    "version": "2.0.0",</span><br><span class="line">    "tasks": [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"build"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"go build"</span>,</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: <span class="string">"$msCompile"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"build and run"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"go build &amp;&amp; ./$(pwd | xargs basename) "</span>,</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: <span class="string">"$msCompile"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>build 的部份，直接運行 go build 指令即可，但 build and run 就稍嫌複雜些，由於 go build 預設會在該目錄底下生成與專案資料夾名稱同名的檔案，因此這邊利用 shell 指令抓取資料夾名稱來做執行。 problemMatcher的部份通常應該用來檢測錯誤的問題，在不填寫的情況下 vscode 會詢問是否要繼續而不檢測編譯結果，因此這邊填入預設值來省去步驟。</p>
+<p>不過這邊做的只是簡單的 build 範例，實際上可以搭配 shell script / bat (windows) 來達到切換 GOPATH 將開發環境獨立的目的。 若有時間的話會繼續將後續研究補上。</p>
 
       
     </div>
@@ -467,21 +470,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/postgrsql/" rel="tag"># postgrsql</a>
-          
-            <a href="/tags/pgadmin4/" rel="tag"># pgadmin4</a>
-          
-            <a href="/tags/uwsgi/" rel="tag"># uwsgi</a>
-          
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-            <a href="/tags/linode/" rel="tag"># linode</a>
-          
-            <a href="/tags/debian/" rel="tag"># debian</a>
-          
-            <a href="/tags/virtualenv/" rel="tag"># virtualenv</a>
-          
-            <a href="/tags/pyenv/" rel="tag"># pyenv</a>
+            <a href="/tags/golang/" rel="tag"># golang</a>
           
         </div>
       
@@ -503,6 +492,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/05/python-environment-prepare/" rel="prev" title="Install Pyenv and virtualenv on Debian9">
+                Install Pyenv and virtualenv on Debian9 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -693,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyenv-Introduction-amp-Installation"><span class="nav-number">1.</span> <span class="nav-text">Pyenv Introduction &amp; Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyenv-Virtualenv-Introduction-amp-Installation"><span class="nav-number">2.</span> <span class="nav-text">Pyenv-Virtualenv Introduction &amp; Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結語"><span class="nav-number">3.</span> <span class="nav-text">結語</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化-Golang-專案"><span class="nav-number">1.</span> <span class="nav-text">初始化 Golang 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#導入本地端-Package"><span class="nav-number">2.</span> <span class="nav-text">導入本地端 Package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VSCode-的編譯快捷設定"><span class="nav-number">3.</span> <span class="nav-text">VSCode 的編譯快捷設定</span></a></li></ol></div>
             
 
           </div>
