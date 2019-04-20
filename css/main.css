@@ -1833,7 +1833,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #967da7;
+  background: #34166a;
 }
 .feed-link,
 .chat {
@@ -2435,7 +2435,7 @@ hr {
   margin-top: 80px;
 }
 .header {
-  background: #f9e0d9;
+  background: #ece4b7;
 }
 .header-inner {
   padding: 20px 0;
