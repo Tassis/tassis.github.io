@@ -96,21 +96,21 @@
 
 
 
-  <meta name="description" content="今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗">
-<meta name="keywords" content="postgrsql,pgadmin4,uwsgi,python,linode,debian,virtualenv,pyenv">
+  <meta name="description" content="在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。  之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除">
+<meta name="keywords" content="uWsgi,Python,Debian,Virtualenv,Pyenv">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Install Pyenv and virtualenv on Debian9">
+<meta property="og:title" content="Install Pyenv and Virtualenv on Debian9">
 <meta property="og:url" content="http://tassis.me/2019/02/05/python-environment-prepare/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗">
+<meta property="og:description" content="在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。  之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555595010995.png">
 <meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555595658764.png">
 <meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555597727104-1555749772254.png">
-<meta property="og:updated_time" content="2019-04-20T10:12:44.154Z">
+<meta property="og:updated_time" content="2019-04-21T18:03:23.103Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Install Pyenv and virtualenv on Debian9">
-<meta name="twitter:description" content="今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗">
+<meta name="twitter:title" content="Install Pyenv and Virtualenv on Debian9">
+<meta name="twitter:description" content="在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。  之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除">
 <meta name="twitter:image" content="http://media.tassis.me/python-environment-prepare/1555595010995.png">
 
 
@@ -129,7 +129,7 @@
   };
 </script>
 
-  <title>Install Pyenv and virtualenv on Debian9 | ＠邊緣沙威瑪</title>
+  <title>Install Pyenv and Virtualenv on Debian9 | ＠邊緣沙威瑪</title>
   
 
 
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Install Pyenv and virtualenv on Debian9
+          <h1 class="post-title" itemprop="name headline">Install Pyenv and Virtualenv on Debian9
 
               
             
@@ -365,7 +365,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-20 18:12:44" itemprop="dateModified" datetime="2019-04-20T18:12:44+08:00">2019-04-20</time>
+                <time title="修改時間：2019-04-22 02:03:23" itemprop="dateModified" datetime="2019-04-22T02:03:23+08:00">2019-04-22</time>
               
             
           </span>
@@ -382,7 +382,7 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -417,7 +417,9 @@
       
 
       
-        <p>今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗環境區隔開，而在網路上較為有名的便是 pyenv 及 virtualenv 這兩項工具了，這邊會紀錄下自己準備環境時的步驟及一些筆記。</p>
+        <p>在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。 </p>
+<p>之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除當前版本-&gt;安裝新版本-&gt;安裝依賴套件」，反覆了幾次覺得特別煩躁，於是上網找了下有沒有快速切換版本的方法。</p>
+<p>​    於是就找到了可以切換 python版本的 pyenv 及切換獨立 python 環境的 virtualenv，不管是在開發環境、運行環境部署上都非常的好用。 </p>
 <a id="more"></a>
 <hr>
 <h2 id="Pyenv-Introduction-amp-Installation"><a href="#Pyenv-Introduction-amp-Installation" class="headerlink" title="Pyenv Introduction &amp; Installation"></a>Pyenv Introduction &amp; Installation</h2><p>pyenv 是一個 python 版本管理器，在開發各項專案的過程中，經常會遇到 A 專案及 B 專案使用的 python 版本不一樣的問題，若每次都需要重新安裝實在太過浪費時間。為了解決這個問題所產生出來的便是這個版本管理器。</p>
@@ -450,11 +452,11 @@
 <p>完成後於 .bashrc 檔案中，增加以下代碼後存檔：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
 <p>就設定完成了。 在確定 pyenv 有安裝 python 版本後，便可以透過 pyenv virtaulenv 指令來建立運行環境：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假定已經安裝了 python 3.6.5 則可以運行以下指令建立名稱為 pgadmin 的環境。</span></span><br><span class="line">pyenv install 3.6.5 pgadmin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假定已經安裝了 python 3.6.5 則可以運行以下指令建立名稱為 test 的環境。</span></span><br><span class="line">pyenv install 3.6.5 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://media.tassis.me/python-environment-prepare/1555597727104-1555749772254.png" alt="1555597727104"></p>
 <p>只要顯示如上訊息便表示環境建立完成。</p>
 <p>接下來就可以透過以下指令切換運行環境了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global pgadmin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>在有許多 python 專案的情況下，透過 pyenv 及 virtaulenv 可以很輕鬆的達到將運行環境分離開來，避免版本衝突、套件混亂等情況。在開發專案、環境部署上都方便了不少，可以說是一大利器。在確定虛擬環境夠建完成後就可以輸入依據自己的需求直接使用 pip 安裝套件了。</p>
 
       
@@ -479,21 +481,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/postgrsql/" rel="tag"># postgrsql</a>
+            <a href="/tags/uWsgi/" rel="tag"># uWsgi</a>
           
-            <a href="/tags/pgadmin4/" rel="tag"># pgadmin4</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/uwsgi/" rel="tag"># uwsgi</a>
+            <a href="/tags/Debian/" rel="tag"># Debian</a>
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/Virtualenv/" rel="tag"># Virtualenv</a>
           
-            <a href="/tags/linode/" rel="tag"># linode</a>
-          
-            <a href="/tags/debian/" rel="tag"># debian</a>
-          
-            <a href="/tags/virtualenv/" rel="tag"># virtualenv</a>
-          
-            <a href="/tags/pyenv/" rel="tag"># pyenv</a>
+            <a href="/tags/Pyenv/" rel="tag"># Pyenv</a>
           
         </div>
       
@@ -516,8 +512,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/10/uwsgi-enviornment-prepare/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/10/uwsgi-enviornment-prepare/" rel="prev" title="Postgresql and PgAdmin4 Installation on Debian9">
+                Postgresql and PgAdmin4 Installation on Debian9 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,7 +604,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分類</span>
                   
                 </div>

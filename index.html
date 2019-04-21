@@ -317,7 +317,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/10/uwsgi-enviornment-prepare/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/02/10/uwsgi-enviornment-prepare/" class="post-title-link" itemprop="url">Postgresql and PgAdmin4 Installation on Debian9</a>
               
             
           </h1>
@@ -359,7 +359,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-20 18:29:26" itemprop="dateModified" datetime="2019-04-20T18:29:26+08:00">2019-04-20</time>
+                <time title="修改時間：2019-04-22 02:06:31" itemprop="dateModified" datetime="2019-04-22T02:06:31+08:00">2019-04-22</time>
               
             
           </span>
@@ -376,7 +376,21 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Database/PostgreSQL/" itemprop="url" rel="index"><span itemprop="name">PostgreSQL</span></a></span>
 
                 
                 
@@ -412,7 +426,7 @@
 
       
         
-          <p>在使用 pip 安裝完 pgAdmin4 後碰到了另外幾個比較麻煩的問題，部署 pgAdmin4 時發現還需要準備伺服器運行環境。  在官方推薦的作法有 Apache 、 Gunicorn / uWSGI 搭配 Nginx 兩種作法。 不過由於 linode 上已經有正在運行的 nginx 環境了，就直接不考慮使用 Apache 的部份，反正未來接觸 Flask、Django 的框架大多是基於uWsgi 部署的就當作練習看看吧。</p>
+          <p>PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -496,7 +510,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/05/python-environment-prepare/" class="post-title-link" itemprop="url">Install Pyenv and virtualenv on Debian9</a>
+                <a href="/2019/02/05/python-environment-prepare/" class="post-title-link" itemprop="url">Install Pyenv and Virtualenv on Debian9</a>
               
             
           </h1>
@@ -538,7 +552,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-20 18:12:44" itemprop="dateModified" datetime="2019-04-20T18:12:44+08:00">2019-04-20</time>
+                <time title="修改時間：2019-04-22 02:03:23" itemprop="dateModified" datetime="2019-04-22T02:03:23+08:00">2019-04-22</time>
               
             
           </span>
@@ -555,7 +569,7 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -591,7 +605,9 @@
 
       
         
-          <p>今天在 linode 上要安裝 postgresql 及對應的管理 GUI 界面 pgAdmin4 時遇到了一些問題，pgAdmin4 必須使用 python 作為運行環境，但考量到 linode 上可能會有其他的實驗環境，而 python-pip 的套件安裝是全域的，若今天有個專案要用 A套件的 1.0 版本 ，另外一個專案要使用 A套件的 2.0 版本 就很容易起衝突，因此必須要想辦法將各實驗環境區隔開，而在網路上較為有名的便是 pyenv 及 virtualenv 這兩項工具了，這邊會紀錄下自己準備環境時的步驟及一些筆記。</p>
+          <p>在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。 </p>
+<p>之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除當前版本-&gt;安裝新版本-&gt;安裝依賴套件」，反覆了幾次覺得特別煩躁，於是上網找了下有沒有快速切換版本的方法。</p>
+<p>​    於是就找到了可以切換 python版本的 pyenv 及切換獨立 python 環境的 virtualenv，不管是在開發環境、運行環境部署上都非常的好用。 </p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1056,7 +1072,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分類</span>
                   
                 </div>

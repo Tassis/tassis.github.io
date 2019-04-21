@@ -96,18 +96,22 @@
 
 
 
-  <meta name="description" content="在使用 pip 安裝完 pgAdmin4 後碰到了另外幾個比較麻煩的問題，部署 pgAdmin4 時發現還需要準備伺服器運行環境。  在官方推薦的作法有 Apache 、 Gunicorn / uWSGI 搭配 Nginx 兩種作法。 不過由於 linode 上已經有正在運行的 nginx 環境了，就直接不考慮使用 Apache 的部份，反正未來接觸 Flask、Django 的框架大多是基於uW">
-<meta name="keywords" content="uwsgi,flask,pgadmin">
+  <meta name="description" content="PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。">
+<meta name="keywords" content="uWsgi,Python,Debian,Flask,pgAdmin,Nginx,PostgreSQL,Database">
 <meta property="og:type" content="article">
-<meta property="og:title" content="＠邊緣沙威瑪">
+<meta property="og:title" content="Postgresql and PgAdmin4 Installation on Debian9">
 <meta property="og:url" content="http://tassis.me/2019/02/10/uwsgi-enviornment-prepare/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="在使用 pip 安裝完 pgAdmin4 後碰到了另外幾個比較麻煩的問題，部署 pgAdmin4 時發現還需要準備伺服器運行環境。  在官方推薦的作法有 Apache 、 Gunicorn / uWSGI 搭配 Nginx 兩種作法。 不過由於 linode 上已經有正在運行的 nginx 環境了，就直接不考慮使用 Apache 的部份，反正未來接觸 Flask、Django 的框架大多是基於uW">
+<meta property="og:description" content="PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-04-20T10:29:26.757Z">
+<meta property="og:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555778944692.png">
+<meta property="og:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555817488642.png">
+<meta property="og:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555867029260.png">
+<meta property="og:updated_time" content="2019-04-21T18:06:31.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="＠邊緣沙威瑪">
-<meta name="twitter:description" content="在使用 pip 安裝完 pgAdmin4 後碰到了另外幾個比較麻煩的問題，部署 pgAdmin4 時發現還需要準備伺服器運行環境。  在官方推薦的作法有 Apache 、 Gunicorn / uWSGI 搭配 Nginx 兩種作法。 不過由於 linode 上已經有正在運行的 nginx 環境了，就直接不考慮使用 Apache 的部份，反正未來接觸 Flask、Django 的框架大多是基於uW">
+<meta name="twitter:title" content="Postgresql and PgAdmin4 Installation on Debian9">
+<meta name="twitter:description" content="PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。">
+<meta name="twitter:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555778944692.png">
 
 
 
@@ -125,7 +129,7 @@
   };
 </script>
 
-  <title> | ＠邊緣沙威瑪</title>
+  <title>Postgresql and PgAdmin4 Installation on Debian9 | ＠邊緣沙威瑪</title>
   
 
 
@@ -318,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">Postgresql and PgAdmin4 Installation on Debian9
 
               
             
@@ -361,7 +365,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-20 18:29:26" itemprop="dateModified" datetime="2019-04-20T18:29:26+08:00">2019-04-20</time>
+                <time title="修改時間：2019-04-22 02:06:31" itemprop="dateModified" datetime="2019-04-22T02:06:31+08:00">2019-04-22</time>
               
             
           </span>
@@ -378,7 +382,21 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Database/PostgreSQL/" itemprop="url" rel="index"><span itemprop="name">PostgreSQL</span></a></span>
 
                 
                 
@@ -413,8 +431,90 @@
       
 
       
-        <p>在使用 pip 安裝完 pgAdmin4 後碰到了另外幾個比較麻煩的問題，部署 pgAdmin4 時發現還需要準備伺服器運行環境。  在官方推薦的作法有 Apache 、 Gunicorn / uWSGI 搭配 Nginx 兩種作法。 不過由於 linode 上已經有正在運行的 nginx 環境了，就直接不考慮使用 Apache 的部份，反正未來接觸 Flask、Django 的框架大多是基於uWsgi 部署的就當作練習看看吧。</p>
+        <p>PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。</p>
 <a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>要完全部署完畢並不單單只有安裝 PostgreSQL 及 PgAdmin 而已 ，由於 pgAdmin 是一套基於 Flask 框架的 web gui ，因此需要先準備好對應的運行環境。 具體需求如下：</p>
+<ul>
+<li>Htttp Server   (ex: apache 、 nginx )</li>
+<li>WSGI Server  (ex: Gunicorn、uWSGI)</li>
+<li>Python Enviourment </li>
+</ul>
+<p>考量到未來 linode 上可能會有其他的 python 實驗環境，因此這邊採用 virtualenv 額外建置虛擬環境來做運行。若不知道 virtualenv  的用途的話可以參考 <a href="https://tassis.me/2019/02/05/python-environment-prepare/">Install Pyenv and virtualenv on Debian9</a> 這篇。</p>
+<p>而 HttpServer 的部份由於個人偏好選用 Nginx ， WSGI Server 採用 Flask 框架部署時常用的 uWSGI 。</p>
+<h2 id="安裝-PgAdmin-4"><a href="#安裝-PgAdmin-4" class="headerlink" title="安裝 PgAdmin 4"></a>安裝 PgAdmin 4</h2><p><a href="https://www.pgadmin.org/download/" target="_blank" rel="noopener">pgAdmin官網</a>上有提供數種安裝方式以支援各大主流平台，而由於這次採用的 Linux 發行版為 Debian 是屬於 apt 派系，因此可以選擇的選項就只剩下 Python Wheel 、 Apt 兩條路可選擇，不過考量到之後還需要配置 uWSGI / Gunicorn，因此這邊就直接選擇 python wheel  的方案了，實際情況可以依照需求做選擇。</p>
+<p>在 server 上用 wget指令下載 whl 檔案，範例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v4.5/pip/pgadmin4-4.5-py2.py3-none-any.whl</span><br></pre></td></tr></table></figure>
+<p><img src="/uwsgi-enviornment-prepare/1555778944692.png" alt="1555778944692"></p>
+<p>下載完成後，可以直接運行 pip 進行安裝：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install &lt;下載的檔案&gt;.whl</span><br></pre></td></tr></table></figure>
+<p>安裝完畢後可以輸入 pip list 看一下到底安裝了哪些套件。可以發現在安裝過程中已經順便把 uWSGI 給一併安裝好了。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
+<li>config.py                  系統最主要的配置文件，正常情況下不應該修改，可以當作進行配置的參考文件。 </li>
+<li>config_distro.py      在 config.py 之後被讀取，提供各發行版調整設定路徑、各項參數。</li>
+<li>config_local.py        在 config_distro.py 之後讀取，主要提供使用者調整任何所需的設定。而</li>
+</ul>
+<p>因此我們可以自己生成 config_local.py 來做設定。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 這邊請改為自己安裝 pgadmin 的路徑</span></span><br><span class="line"><span class="built_in">cd</span> ~/.pyenv/versions/pgadmin/lib/python3.6/site-packages/pgadmin4 </span><br><span class="line"><span class="comment"># 使用 touch 指令生成檔案</span></span><br><span class="line">touch config_local.py</span><br></pre></td></tr></table></figure>
+<p>再來就是設定的部份 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 編輯 config_local.py</span></span><br><span class="line">vi config_local.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加以下內容。 </span></span><br><span class="line"><span class="comment"># 以下各設定檔路徑可以更改至自己想要的位置，但要確保 http伺服器 (nginx、apache) 足夠有權限操作。</span></span><br><span class="line">import os </span><br><span class="line"><span class="comment"># 這邊基於將其指向到了安裝 pgadmin 的使用者 根目錄/.pgadmin 底下。</span></span><br><span class="line">DATA_DIR = os.path.realpath(os.path.expanduser(u<span class="string">'~/.pgadmin/'</span>))</span><br><span class="line">LOG_FILE = os.path.join(DATA_DIR, <span class="string">'pgadmin4.log'</span>)</span><br><span class="line">SQLITE_PATH = os.path.join(DATA_DIR, <span class="string">'pgadmin4.db'</span>)</span><br><span class="line">SESSION_DB_PATH = os.path.join(DATA_DIR, <span class="string">'sessions'</span>)</span><br><span class="line">STORAGE_DIR = os.path.join(DATA_DIR, <span class="string">'storage'</span>)</span><br></pre></td></tr></table></figure>
+<p>配置完成後儲存，運行下面指令初始化配置資料庫：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py</span><br></pre></td></tr></table></figure>
+<p>由於 pgadmin 是基於 flask 框架構成，而 flask 其實有自帶一個小型 server 功能讓我們可以開啟測試伺服器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python pgAdmin4.py			<span class="comment"># 運行 pgAdmin4.py 這是整個 pgAdmin 的入口</span></span><br></pre></td></tr></table></figure>
+<p>確認運行正常後，就可以開始處理將 pgAdmin </p>
+<h2 id="uWSGI-配置"><a href="#uWSGI-配置" class="headerlink" title="uWSGI 配置"></a>uWSGI 配置</h2><p>接下來需要針對 uWSGI 的運行進行配置，為了避免打一長串的指令，這邊直接將所有需要的參數寫入設定檔在讓uWSGI來進行讀取。在 pgAdmin 的安裝根目錄下創建設定檔：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch pgadmin4.ini   (名稱部份可自定義)</span><br></pre></td></tr></table></figure>
+<p>註：官方有支援六種格式的設定檔 ，不過這邊因為堪用就行，直接使用最簡單的 ini 即可。</p>
+<p>配置規則稍微複雜一些，由於選項很多推薦搭配官方文檔一起觀看：</p>
+<blockquote>
+<p>  uWSGI 官方手冊（簡體中文翻譯）: <a href="https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/Options.html" target="_blank" rel="noopener">傳送門</a></p>
+</blockquote>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">processes</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">socket</span> = /home/pgadmin/pgadmin4.sock</span><br><span class="line"><span class="attr">chdir</span> = /home/pgadmin/.pyenv/versions/pgadmin/lib/python3.<span class="number">6</span>/site-packages/pgadmin4</span><br><span class="line"><span class="attr">chmod-socket</span> = <span class="number">664</span></span><br><span class="line"><span class="attr">threads</span> = <span class="number">25</span></span><br><span class="line"><span class="attr">mount</span> = pgAdmin4=pgAdmin4:app</span><br><span class="line"><span class="attr">manage-script-name</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">wsgi-file</span> = pgAdmin4.wsgi</span><br></pre></td></tr></table></figure>
+<p>上面是這次所編寫的範例，針對出現的變數大致講解下代表什麼意思。 </p>
+<ul>
+<li>process ，啟動時會運行多少個進程（數量依據需求而定）。</li>
+<li>threads ， prethreaded模式下，每個進程會使用多少執行緒。</li>
+<li>socket ，啟動時會在指定路徑生成對應 sock 檔案，用來與 http 伺服器 (nginx) 溝通的主要手段。</li>
+<li>chdir ， 程式運行前先切換到指定目錄，</li>
+<li>chmod-socket 變更生成 socket 檔案的預設權限 ( 確保 http server 有權限可訪問 一般設定為 644 )  </li>
+<li>mount ， 在檔案內加載程式，這邊將其指向到 pyAdmin4.py 中的 app變數。</li>
+<li>wsgi-file ， 運行時所需要的協議檔案。</li>
+</ul>
+<p>配置完成後，可以運行 uWSGI 進行測試：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini pgadmin4.ini</span><br></pre></td></tr></table></figure>
+<p><img src="/uwsgi-enviornment-prepare/1555817488642.png" alt="1555817488642"></p>
+<p>出現如上的畫面就代表成功了。</p>
+<p>註：如有出現錯誤，通常是路徑配置錯誤或是 mount 設置錯誤等。可以依據錯誤訊息來檢查原因將其排除。</p>
+<h2 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h2><p>在確認 uWSGI 正確運行之後，再來需要配置 Nginx 用來跟 uWSGI Server 進行通信。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切換到 nginx 根目錄</span></span><br><span class="line"><span class="built_in">cd</span> /etc/nginx</span><br><span class="line"><span class="comment"># 在 sites-available 建立 pgAdmin 的配置檔案</span></span><br><span class="line">sudo touch sites-available/pgAdmin</span><br><span class="line"><span class="comment"># 在 sites-enabled 中建立與 sites-available/pgAdmin 的連結</span></span><br><span class="line">sudo ln -s /etc/nginx/sites-available/pgAdmin /etc/nginx/sites-enabled/pgAdmin</span><br></pre></td></tr></table></figure>
+<p>之後在 sites-available/pgAdmin 中寫入以下內容：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">   <span class="comment"># 監聽的 port 預設為 80</span></span><br><span class="line">   <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">   <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line">   <span class="comment"># 若有要指向其他網域的話可以將下面這行註解拿掉</span></span><br><span class="line">   <span class="comment"># server_name &lt;yourdomin.com&gt;</span></span><br><span class="line">      <span class="attribute">location</span> /&#123;</span><br><span class="line">                <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">@pgadmin</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="attribute">location</span> <span class="variable">@pgadmin</span> &#123;</span><br><span class="line">                <span class="attribute">include</span> /etc/nginx/uwsgi_params;</span><br><span class="line">        		<span class="comment"># 這個參數需要指向 uWSGI 生成的 .sock 位置</span></span><br><span class="line">                <span class="attribute">uwsgi_pass</span> unix:/home/pgadmin/pgadmin4.sock;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>編寫完成後，讓 nginx 重新讀取配置檔案並運行 uWSGI :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 讓 nginx 重新讀取配置</span></span><br><span class="line">sudo systemctl reload nginx</span><br><span class="line"><span class="comment"># 切換至 pgAdmin 根目錄</span></span><br><span class="line"><span class="built_in">cd</span> &lt;your_path&gt;/pgAdmin4</span><br><span class="line"><span class="comment"># 運行 uwsgi</span></span><br><span class="line">uwsgi --ini pgadmin4.ini</span><br></pre></td></tr></table></figure>
+<p>之後便可以開啟瀏覽器輸入網址觀看是否有正常開啟囉。</p>
+<p><img src="/uwsgi-enviornment-prepare/1555867029260.png" alt="1555867029260"></p>
+<p>註1： 若出現 403 forbidden 則代表權限配置有誤，需要確認 nginx 的運行使用者( debian 下為 www-data ) 是否有權限可以讀取跟執行 uWSGI 的 sock、log、db檔案。</p>
+<p>註2： 若出現 502 bad gateway 則代表路由錯誤，需要檢查 Uwsgi 是否正常運行 、 Nginx 配置檔案設置是否有誤，可以檢查 /var/log/nginx/error.log 的錯誤訊息來進行障礙排除。</p>
+<h3 id="將-PgAdmin-的-uWSGI-添加進系統服務"><a href="#將-PgAdmin-的-uWSGI-添加進系統服務" class="headerlink" title="將 PgAdmin 的 uWSGI 添加進系統服務"></a>將 PgAdmin 的 uWSGI 添加進系統服務</h3><p>雖然目前測試起來已經能夠正常開啟 pgAdmin 的頁面，但卻需要手動開啟 uWSGI 才行，總不可能每次我們需要使用時才手動打開，所以為了讓其能夠常駐，可以把它添加進 <a href="https://wiki.archlinux.org/index.php/Systemd_(%E6%AD%A3%E9%AB%94%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd</a>&gt;) 系統服務中，這樣就可以設定開機時是否要自動啟動。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切換至 systemd 的配置文件夾</span></span><br><span class="line"><span class="built_in">cd</span> /etc/systemd/system</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新增 pgadmin 的 service 檔案</span></span><br><span class="line">touch pgadmin.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 編輯該檔案</span></span><br><span class="line">sudo vi pgadmin.service</span><br></pre></td></tr></table></figure>
+<p>填入以下內容:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=PgAdmin Service</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">User</span>=www-data</span><br><span class="line"><span class="attr">Group</span>=www-data</span><br><span class="line"><span class="attr">WorkingDirectory</span>=/home/pgadmin/.pyenv/versions/pgadmin/lib/python3.<span class="number">6</span>/site-packages/pgadmin4</span><br><span class="line"><span class="attr">Environment</span>=<span class="string">"PATH=/home/pgadmin/.pyenv/versions/pgadmin/bin"</span></span><br><span class="line"><span class="attr">ExecStart</span>=/home/pgadmin/.pyenv/versions/pgadmin/bin/uwsgi --ini pgadmin4.ini</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br><span class="line"><span class="attr">Alias</span>=pgadmin.service</span><br></pre></td></tr></table></figure>
+<p>以下針對比較重要的部份做說明：</p>
+<ul>
+<li>User 請改為自己希望執行 uWSGI 的使用者 </li>
+<li>Group 同上</li>
+<li>WorkingDirectory 為設置運作的根目錄，指向 pgAdmin4的安裝目錄即可</li>
+<li>Environment 設置環境變數的欄位，指向 Python 的運行環境資料夾</li>
+<li>ExecStart  設置要運行的指令，會依照上面設置的環境變數、資料夾位置等條件運行指令。</li>
+</ul>
+<p>其餘的部份可不必做更動，由於詳細配置內容較多。若有興趣可參考</p>
+<blockquote>
+<p>官方 Wiki : <a href="https://wiki.debian.org/systemd" target="_blank" rel="noopener">傳送門</a></p>
+</blockquote>
+<p>配置完畢後存檔，將 pgadmin 作為服務開啟並設置開機時自動啟動：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 開啟設置好的 pgadmin 服務</span></span><br><span class="line">systemctl start pgadmin.service</span><br><span class="line"><span class="comment"># 將 pgadmin 設置為常駐型服務（開機時自動啟動）</span></span><br><span class="line">systemctl <span class="built_in">enable</span> pgadmin.service</span><br></pre></td></tr></table></figure>
+<p>之後可以在打開瀏覽器測試，若能夠進入登入畫面就代表成功了。</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>這次的配置上還是稍嫌複雜，比起 mysql + apache + phpmyadmin 而言，繁雜的配置多上不少，在同樣的條件下或許使用 Apache 進行配置會較為簡單、快速也說不定。</p>
 
       
     </div>
@@ -438,11 +538,21 @@
       
         <div class="post-tags">
           
-            <a href="/tags/uwsgi/" rel="tag"># uwsgi</a>
+            <a href="/tags/uWsgi/" rel="tag"># uWsgi</a>
           
-            <a href="/tags/flask/" rel="tag"># flask</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/pgadmin/" rel="tag"># pgadmin</a>
+            <a href="/tags/Debian/" rel="tag"># Debian</a>
+          
+            <a href="/tags/Flask/" rel="tag"># Flask</a>
+          
+            <a href="/tags/pgAdmin/" rel="tag"># pgAdmin</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/PostgreSQL/" rel="tag"># PostgreSQL</a>
+          
+            <a href="/tags/Database/" rel="tag"># Database</a>
           
         </div>
       
@@ -455,8 +565,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/05/python-environment-prepare/" rel="next" title="Install Pyenv and virtualenv on Debian9">
-                <i class="fa fa-chevron-left"></i> Install Pyenv and virtualenv on Debian9
+              <a href="/2019/02/05/python-environment-prepare/" rel="next" title="Install Pyenv and Virtualenv on Debian9">
+                <i class="fa fa-chevron-left"></i> Install Pyenv and Virtualenv on Debian9
               </a>
             
           </div>
@@ -507,8 +617,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -544,7 +663,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分類</span>
                   
                 </div>
@@ -636,6 +759,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-PgAdmin-4"><span class="nav-number">2.</span> <span class="nav-text">安裝 PgAdmin 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uWSGI-配置"><span class="nav-number">4.</span> <span class="nav-text">uWSGI 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-配置"><span class="nav-number">5.</span> <span class="nav-text">Nginx 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#將-PgAdmin-的-uWSGI-添加進系統服務"><span class="nav-number">5.1.</span> <span class="nav-text">將 PgAdmin 的 uWSGI 添加進系統服務</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結語"><span class="nav-number">6.</span> <span class="nav-text">結語</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
