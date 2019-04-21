@@ -104,14 +104,14 @@
 <meta property="og:site_name" content="＠邊緣沙威瑪">
 <meta property="og:description" content="PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555778944692.png">
-<meta property="og:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555817488642.png">
-<meta property="og:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555867029260.png">
-<meta property="og:updated_time" content="2019-04-21T18:06:31.948Z">
+<meta property="og:image" content="http://media.tassis.me/uwsgi-enviornment-prepare/1555778944692.png">
+<meta property="og:image" content="http://media.tassis.me/uwsgi-enviornment-prepare/1555817488642.png">
+<meta property="og:image" content="http://media.tassis.me/uwsgi-enviornment-prepare/1555867029260.png">
+<meta property="og:updated_time" content="2019-04-21T18:09:11.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Postgresql and PgAdmin4 Installation on Debian9">
 <meta name="twitter:description" content="PostgreSQL 是近兩年在社群上跛為熱門的資料庫系統，雖然在台灣較沒有人聽過，但是憑著其穩定性及工具集的方便性，被越來越多的人採用。而 PgAdmin 則是 PostgreSQL 的操作 GUI界面，基於 Flask 框架構成，地位上有些類似 phpMyAdmin 但功能更多，由於 VPS 上正好需要資料庫系統，因此在這邊順便紀錄下自己的安裝過程。">
-<meta name="twitter:image" content="http://tassis.me/uwsgi-enviornment-prepare/1555778944692.png">
+<meta name="twitter:image" content="http://media.tassis.me/uwsgi-enviornment-prepare/1555778944692.png">
 
 
 
@@ -365,7 +365,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-22 02:06:31" itemprop="dateModified" datetime="2019-04-22T02:06:31+08:00">2019-04-22</time>
+                <time title="修改時間：2019-04-22 02:09:11" itemprop="dateModified" datetime="2019-04-22T02:09:11+08:00">2019-04-22</time>
               
             
           </span>
@@ -444,7 +444,7 @@
 <h2 id="安裝-PgAdmin-4"><a href="#安裝-PgAdmin-4" class="headerlink" title="安裝 PgAdmin 4"></a>安裝 PgAdmin 4</h2><p><a href="https://www.pgadmin.org/download/" target="_blank" rel="noopener">pgAdmin官網</a>上有提供數種安裝方式以支援各大主流平台，而由於這次採用的 Linux 發行版為 Debian 是屬於 apt 派系，因此可以選擇的選項就只剩下 Python Wheel 、 Apt 兩條路可選擇，不過考量到之後還需要配置 uWSGI / Gunicorn，因此這邊就直接選擇 python wheel  的方案了，實際情況可以依照需求做選擇。</p>
 <p>在 server 上用 wget指令下載 whl 檔案，範例：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v4.5/pip/pgadmin4-4.5-py2.py3-none-any.whl</span><br></pre></td></tr></table></figure>
-<p><img src="/uwsgi-enviornment-prepare/1555778944692.png" alt="1555778944692"></p>
+<p><img src="http://media.tassis.me/uwsgi-enviornment-prepare/1555778944692.png" alt="1555778944692"></p>
 <p>下載完成後，可以直接運行 pip 進行安裝：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install &lt;下載的檔案&gt;.whl</span><br></pre></td></tr></table></figure>
 <p>安裝完畢後可以輸入 pip list 看一下到底安裝了哪些套件。可以發現在安裝過程中已經順便把 uWSGI 給一併安裝好了。</p>
@@ -482,7 +482,7 @@
 </ul>
 <p>配置完成後，可以運行 uWSGI 進行測試：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini pgadmin4.ini</span><br></pre></td></tr></table></figure>
-<p><img src="/uwsgi-enviornment-prepare/1555817488642.png" alt="1555817488642"></p>
+<p><img src="http://media.tassis.me/uwsgi-enviornment-prepare/1555817488642.png" alt="1555817488642"></p>
 <p>出現如上的畫面就代表成功了。</p>
 <p>註：如有出現錯誤，通常是路徑配置錯誤或是 mount 設置錯誤等。可以依據錯誤訊息來檢查原因將其排除。</p>
 <h2 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h2><p>在確認 uWSGI 正確運行之後，再來需要配置 Nginx 用來跟 uWSGI Server 進行通信。</p>
@@ -492,7 +492,7 @@
 <p>編寫完成後，讓 nginx 重新讀取配置檔案並運行 uWSGI :</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 讓 nginx 重新讀取配置</span></span><br><span class="line">sudo systemctl reload nginx</span><br><span class="line"><span class="comment"># 切換至 pgAdmin 根目錄</span></span><br><span class="line"><span class="built_in">cd</span> &lt;your_path&gt;/pgAdmin4</span><br><span class="line"><span class="comment"># 運行 uwsgi</span></span><br><span class="line">uwsgi --ini pgadmin4.ini</span><br></pre></td></tr></table></figure>
 <p>之後便可以開啟瀏覽器輸入網址觀看是否有正常開啟囉。</p>
-<p><img src="/uwsgi-enviornment-prepare/1555867029260.png" alt="1555867029260"></p>
+<p><img src="http://media.tassis.me/uwsgi-enviornment-prepare/1555867029260.png" alt="1555867029260"></p>
 <p>註1： 若出現 403 forbidden 則代表權限配置有誤，需要確認 nginx 的運行使用者( debian 下為 www-data ) 是否有權限可以讀取跟執行 uWSGI 的 sock、log、db檔案。</p>
 <p>註2： 若出現 502 bad gateway 則代表路由錯誤，需要檢查 Uwsgi 是否正常運行 、 Nginx 配置檔案設置是否有誤，可以檢查 /var/log/nginx/error.log 的錯誤訊息來進行障礙排除。</p>
 <h3 id="將-PgAdmin-的-uWSGI-添加進系統服務"><a href="#將-PgAdmin-的-uWSGI-添加進系統服務" class="headerlink" title="將 PgAdmin 的 uWSGI 添加進系統服務"></a>將 PgAdmin 的 uWSGI 添加進系統服務</h3><p>雖然目前測試起來已經能夠正常開啟 pgAdmin 的頁面，但卻需要手動開啟 uWSGI 才行，總不可能每次我們需要使用時才手動打開，所以為了讓其能夠常駐，可以把它添加進 <a href="https://wiki.archlinux.org/index.php/Systemd_(%E6%AD%A3%E9%AB%94%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd</a>&gt;) 系統服務中，這樣就可以設定開機時是否要自動啟動。</p>
