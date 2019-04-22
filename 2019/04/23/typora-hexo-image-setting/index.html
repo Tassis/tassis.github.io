@@ -96,22 +96,24 @@
 
 
 
-  <meta name="description" content="在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。  之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除">
-<meta name="keywords" content="Python,Debian,Virtualenv,Pyenv">
+  <meta name="description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。 而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！">
+<meta name="keywords" content="Typora,Nodejs,Blog,Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Install Pyenv and Virtualenv on Debian9">
-<meta property="og:url" content="http://tassis.me/2019/02/05/python-environment-prepare/index.html">
+<meta property="og:title" content="Typora-Hexo 外連圖床的一種方案試做">
+<meta property="og:url" content="http://tassis.me/2019/04/23/typora-hexo-image-setting/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。  之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除">
+<meta property="og:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。 而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555595010995.png">
-<meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555595658764.png">
-<meta property="og:image" content="http://media.tassis.me/python-environment-prepare/1555597727104-1555749772254.png">
-<meta property="og:updated_time" content="2019-04-22T19:02:44.434Z">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555951121467.png">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555952375385.png">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555952673534.png">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/diagram.png">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555959596702.png">
+<meta property="og:updated_time" content="2019-04-22T19:07:33.404Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Install Pyenv and Virtualenv on Debian9">
-<meta name="twitter:description" content="在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。  之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除">
-<meta name="twitter:image" content="http://media.tassis.me/python-environment-prepare/1555595010995.png">
+<meta name="twitter:title" content="Typora-Hexo 外連圖床的一種方案試做">
+<meta name="twitter:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。 而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！">
+<meta name="twitter:image" content="http://media.tassis.me/typora-hexo-image-setting/1555951121467.png">
 
 
 
@@ -119,7 +121,7 @@
 
   
   
-  <link rel="canonical" href="http://tassis.me/2019/02/05/python-environment-prepare/">
+  <link rel="canonical" href="http://tassis.me/2019/04/23/typora-hexo-image-setting/">
 
 
 
@@ -129,7 +131,7 @@
   };
 </script>
 
-  <title>Install Pyenv and Virtualenv on Debian9 | ＠邊緣沙威瑪</title>
+  <title>Typora-Hexo 外連圖床的一種方案試做 | ＠邊緣沙威瑪</title>
   
 
 
@@ -305,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/02/05/python-environment-prepare/">
+    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/04/23/typora-hexo-image-setting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tassis">
@@ -322,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Install Pyenv and Virtualenv on Debian9
+          <h1 class="post-title" itemprop="name headline">Typora-Hexo 外連圖床的一種方案試做
 
               
             
@@ -348,24 +350,12 @@
                 
               
 
-              <time title="創建時間：2019-02-05 16:20:53" itemprop="dateCreated datePublished" datetime="2019-02-05T16:20:53+08:00">2019-02-05</time>
+              <time title="創建時間：2019-04-23 03:02:00 / 修改時間：03:07:33" itemprop="dateCreated datePublished" datetime="2019-04-23T03:02:00+08:00">2019-04-23</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新於</span>
-                
-                <time title="修改時間：2019-04-23 03:02:44" itemprop="dateModified" datetime="2019-04-23T03:02:44+08:00">2019-04-23</time>
               
             
           </span>
@@ -382,7 +372,21 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/程式語言/" itemprop="url" rel="index"><span itemprop="name">程式語言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/程式語言/NodeJS/" itemprop="url" rel="index"><span itemprop="name">NodeJS</span></a></span>
 
                 
                 
@@ -417,47 +421,52 @@
       
 
       
-        <p>在公司用的發布工具原本是使用 python2 撰寫 、有些是 python3撰寫。 </p>
-<p>之前在公司上遇到了個與 python 環境有關的問題，原先在公司所使用的工具腳本是使用 python2 撰寫的，本來用著用著並沒有什麼問題，但是原先工具的維護者已經離職，加上自己平常開發使用的是 python3 ，在事物繁忙的情況下又無法立碼將舊代碼重構， 當時想著不會用到太多次而不去在意，每次使用時都需要「移除當前版本-&gt;安裝新版本-&gt;安裝依賴套件」，反覆了幾次覺得特別煩躁，於是上網找了下有沒有快速切換版本的方法。</p>
-<p>​    於是就找到了可以切換 python版本的 pyenv 及切換獨立 python 環境的 virtualenv，不管是在開發環境、運行環境部署上都非常的好用。 </p>
+        <p>一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。</p>
+<p>而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！</p>
 <a id="more"></a>
-<hr>
-<h2 id="Pyenv-Introduction-amp-Installation"><a href="#Pyenv-Introduction-amp-Installation" class="headerlink" title="Pyenv Introduction &amp; Installation"></a>Pyenv Introduction &amp; Installation</h2><p>pyenv 是一個 python 版本管理器，在開發各項專案的過程中，經常會遇到 A 專案及 B 專案使用的 python 版本不一樣的問題，若每次都需要重新安裝實在太過浪費時間。為了解決這個問題所產生出來的便是這個版本管理器。</p>
-<blockquote>
-<p>Github: <a href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener">傳送門</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo X GithubPage + Typora 的部落格組合，在網路上也是挺盛行的，但是關於插入文章圖片這件事情，一直沒有一套較為明確的作法。網路上普遍的作法有兩種：</p>
+<ul>
+<li>透過 FTP / HTTP 手動上傳至圖床空間，在複製 URL 連結插入。</li>
+<li>將圖片放入 Hexo 專案的 source資料夾，不做分流直接讀取本地圖片。</li>
+</ul>
+<p>兩個方案都具有圖片數量多時會變得非常麻煩的問題。前者需要一張一張將圖片上傳並複製 URL，後者受限於 Githb 每個 repo 不超過 1GB 的限制，雖然圖片量少時並沒有問題，但日積月累下來卻也很可觀，而若到時才做圖床分流要修改的量又會特別巨大，因此圖床分流還是越早做越好，不僅省去麻煩也能夠統一管理。</p>
+<p>總得來說既然決定要自己動手，希望能夠滿足以下條件：</p>
+<ul>
+<li><p>能夠直接使用 Typora 直觀的插入圖片。</p>
+</li>
+<li><p>在 deploy 時自動將圖片上傳至圖床空間。</p>
+</li>
+<li>圖片上傳完畢後，自動將 markdown 中的本地路徑更改為 url。</li>
+<li>方便攜帶及修改，因為不一定會用同一臺電腦寫文章。</li>
+</ul>
+<h2 id="Typora-編輯器設置"><a href="#Typora-編輯器設置" class="headerlink" title="Typora 編輯器設置"></a>Typora 編輯器設置</h2><p>Typora 編輯器預設會將圖片暫存至 &lt;系統使用者資料夾/.config/Typora&gt; 路徑之中。如圖：</p>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555951121467.png" alt="1555951121467"></p>
+<p>檔案路徑又臭又長，會導致後續處理變得麻煩，同時為了集中管理，會希望能夠放在 hexo 專案內部。而幸運的是 Typora編輯器本身支援自定義圖片存放位置。首先在 hexo 專案根目錄下新增 assets 資料夾，並在文章頂部的 yaml 區塊插入以下兩個參數，並將路徑指過去：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">typora-root-url:</span>		<span class="string">../../assets/</span>		<span class="comment"># 設置 typora 的圖片根目錄</span></span><br><span class="line"><span class="attr">typora-copy-images-to:</span> 	<span class="string">../../assets/&lt;name&gt;</span>	<span class="comment"># 設置這個路徑的話當插入圖片會自動將其複製到指定路徑。</span></span><br></pre></td></tr></table></figure>
+<p>如下圖：</p>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555952375385.png" alt="1555952375385">)</p>
+<p>同時，為了避免又臭又長的絕對路徑，可以將 「檔案-&gt;偏好設定-&gt;優先使用相對路徑」開啟，利用相對路徑就可以大幅減短路徑的長度。</p>
+<p>當參數都設置好且使用相對路徑開啟後，插入圖片時路徑會變得如下：</p>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555952673534.png" alt="1555952673534"></p>
+<p>路徑變得非常單純，後續處理也會相對簡單。</p>
+<h3 id="Hexo-Scaffolds-設置"><a href="#Hexo-Scaffolds-設置" class="headerlink" title="Hexo Scaffolds 設置"></a>Hexo Scaffolds 設置</h3><p>雖然使用 typora 的參數設置可以自訂圖片存放位置非常方便，但若每次新增文章時都必須要自己輸入一次欄位顯然非常麻煩，這邊可以結合 Hexo 的 Scaffolds 功能，讓 Hexo 在我們使用 hexo new 指令時，自動把參數設定好。</p>
+<p>開啟 &lt;hexo專案&gt;/scaffolds/post.md (其他的也可以自行設置)，將其內容修改如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">&#123;&#123;</span> <span class="string">title</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">&#123;&#123;</span> <span class="string">date</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">typora-root-url:</span> <span class="string">../../assets</span></span><br><span class="line"><span class="attr">typora-copy-images-to:</span> <span class="string">../../assets/&#123;&#123;</span> <span class="string">title</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">tags:</span></span><br></pre></td></tr></table></figure>
+<p>這樣當我們在運行 hexo new post &lt;檔案名稱&gt; 時 Typora-Hexo 外連圖床的一種方案試做 欄位就會自動填入設定的檔案名稱。</p>
+<p>註：不過在 hexo new post 生成時 typora-copy-images-to 欄位的 title 會自動加入雙引號，這部份暫且不知如何解決。</p>
+<h2 id="代碼腳本"><a href="#代碼腳本" class="headerlink" title="代碼腳本"></a>代碼腳本</h2><blockquote>
+<p>github : <a href="https://github.com/Tassis/ssh-ihost" target="_blank" rel="noopener">傳送門</a></p>
 </blockquote>
-<p>而安裝方法也非常的簡單，作者已經提供了一個安裝腳本，讓我們省去手動的步驟。</p>
-<p>可以使用：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://pyenv.run | bash</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure>
-<p>兩個是等效的，不過通常上面的會比較好記。</p>
-<p>備註：若跳出 curl command not found 則必須先使用 sudo apt install curl 將 curl 套件安裝後才可使用。</p>
-<p>安裝完畢後通常視窗訊息如下：</p>
-<p><img src="http://media.tassis.me/python-environment-prepare/1555595010995.png" alt="1555595010995"></p>
-<p>意思為需要將 pyenv 的執行路徑及初始化指令添加進環境變量中。編輯 .bashrc 檔案:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>開啟 bash 設定檔，將以下代碼加入至 .bashrc 文件底部之後儲存。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>之後在 bash 輸入 pyenv  看看若有出現以下畫面就代表配置完成囉。</p>
-<p><img src="http://media.tassis.me/python-environment-prepare/1555595658764.png" alt="1555595658764"></p>
-<p>接下來可以輸入對應的指令來進行 python 版本的安裝。如輸入以下指令來安裝 python 3.6.5 版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.6.5</span><br></pre></td></tr></table></figure>
-<p>並且設定全域的 python 運行環境：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global 3.6.5</span><br></pre></td></tr></table></figure>
-<p>至於如何應用就看大家自己的需求了。</p>
-<h2 id="Pyenv-Virtualenv-Introduction-amp-Installation"><a href="#Pyenv-Virtualenv-Introduction-amp-Installation" class="headerlink" title="Pyenv-Virtualenv Introduction &amp; Installation"></a>Pyenv-Virtualenv Introduction &amp; Installation</h2><p>既然 pyenv 是針對 python 版本的管理器，那 virtualenv 就是針對運行環境的管理器了，我們可以利用 virtualenv 將運行環境的依賴套件獨立出來，方便開發、測試以及保持運行環境的乾淨。</p>
-<p>而 pyenv 也有透過將 virtualenv 作為插件功能整合進來。若是使用上面官方的 pyenv-installer 進行安裝的話則會一起安裝進來。若沒有的話則必須要手動將其 clone 至 plugin 資料夾內。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv</span><br></pre></td></tr></table></figure>
-<p>完成後於 .bashrc 檔案中，增加以下代碼後存檔：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
-<p>就設定完成了。 在確定 pyenv 有安裝 python 版本後，便可以透過 pyenv virtaulenv 指令來建立運行環境：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假定已經安裝了 python 3.6.5 則可以運行以下指令建立名稱為 test 的環境。</span></span><br><span class="line">pyenv install 3.6.5 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://media.tassis.me/python-environment-prepare/1555597727104-1555749772254.png" alt="1555597727104"></p>
-<p>只要顯示如上訊息便表示環境建立完成。</p>
-<p>接下來就可以透過以下指令切換運行環境了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>在有許多 python 專案的情況下，透過 pyenv 及 virtaulenv 可以很輕鬆的達到將運行環境分離開來，避免版本衝突、套件混亂等情況。在開發專案、環境部署上都方便了不少，可以說是一大利器。在確定虛擬環境夠建完成後就可以輸入依據自己的需求直接使用 pip 安裝套件了。</p>
+<p>本來一開始想用 Python 撰寫的，但 Hexo 本身就依賴於 NodeJS 環境，在這之上又多個 Python環境會非常的不方便。於是就直接使用 NodeJS 寫了，一邊查資料一邊撰寫，導致代碼有些雜亂。</p>
+<p>主要區分為兩部份，執行檔 .js 與配置檔 .json，執行檔的部份很單純，流程如圖：</p>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/diagram.png" alt="diagram"></p>
+<p>配置檔案的部份，具體如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"sftp"</span>: &#123;</span><br><span class="line">        "host": "localhost",					// 連線的 Server IP</span><br><span class="line">        "username": "username",					// 登入的使用者帳號</span><br><span class="line">        "localRootDirectory": "assets/",		// 本地端的預設根目錄(通常指向上傳圖片的目錄)</span><br><span class="line">        "remoteRootDirectory": "remote_path",	// 遠端的預設根目錄(通常指向要上傳到的位置)</span><br><span class="line">        "privateKey": "private_key",			// 使用個人私鑰的檔案位置</span><br><span class="line">        "passphrase": "key's password",			// 私鑰的密碼</span><br><span class="line">        "ignore_rule":[							// 要排除上傳的檔案</span><br><span class="line">            ".",</span><br><span class="line">            <span class="string">"node_modules"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    "common": &#123;</span><br><span class="line">        // 上傳的目標網域名稱(ex:http://172.68.152.49/) </span><br><span class="line">        "server_url": "url_name",				</span><br><span class="line">        "post_dir": "./source/_posts/",			// 本地端的 markdown 文章放置區</span><br><span class="line">        "removeImageOnSuccessful": true			// 是否要移除上傳完成的檔案？</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>將兩者放置於 hexo 專案的根目錄下，並配置好後運行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node deploy_pic.js</span><br></pre></td></tr></table></figure>
+<p>若一切配置正確則會開始上傳，最終顯示結果如下：</p>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555959596702.png" alt="1555959596702"></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>就結果來說勉強滿足所有條件，但就方便性及配置性而言還遠遠不足，而且 Bug 及例外情況也不少，不過畢竟是第一版還可以慢慢的修正。後續在慢慢的補強吧…好累（躺</p>
 
       
     </div>
@@ -481,13 +490,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Typora/" rel="tag"># Typora</a>
           
-            <a href="/tags/Debian/" rel="tag"># Debian</a>
+            <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
           
-            <a href="/tags/Virtualenv/" rel="tag"># Virtualenv</a>
+            <a href="/tags/Blog/" rel="tag"># Blog</a>
           
-            <a href="/tags/Pyenv/" rel="tag"># Pyenv</a>
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
         </div>
       
@@ -500,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/04/golang-day1/" rel="next" title="Golang 初學筆記（一）on Ubuntu 16.04">
-                <i class="fa fa-chevron-left"></i> Golang 初學筆記（一）on Ubuntu 16.04
+              <a href="/2019/02/10/uwsgi-enviornment-prepare/" rel="next" title="Postgresql and PgAdmin4 Installation on Debian9">
+                <i class="fa fa-chevron-left"></i> Postgresql and PgAdmin4 Installation on Debian9
               </a>
             
           </div>
@@ -509,10 +518,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/10/uwsgi-enviornment-prepare/" rel="prev" title="Postgresql and PgAdmin4 Installation on Debian9">
-                Postgresql and PgAdmin4 Installation on Debian9 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -719,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyenv-Introduction-amp-Installation"><span class="nav-number">1.</span> <span class="nav-text">Pyenv Introduction &amp; Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyenv-Virtualenv-Introduction-amp-Installation"><span class="nav-number">2.</span> <span class="nav-text">Pyenv-Virtualenv Introduction &amp; Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結語"><span class="nav-number">3.</span> <span class="nav-text">結語</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Typora-編輯器設置"><span class="nav-number">2.</span> <span class="nav-text">Typora 編輯器設置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-Scaffolds-設置"><span class="nav-number">2.1.</span> <span class="nav-text">Hexo Scaffolds 設置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代碼腳本"><span class="nav-number">3.</span> <span class="nav-text">代碼腳本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
             
 
           </div>
