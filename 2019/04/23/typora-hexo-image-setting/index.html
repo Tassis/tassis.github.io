@@ -96,24 +96,21 @@
 
 
 
-  <meta name="description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。 而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！">
+  <meta name="description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。  然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功">
 <meta name="keywords" content="Hexo,Blog,Typora,Nodejs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typora-Hexo 外連圖床的一種方案試做(一)">
+<meta property="og:title" content="Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost">
 <meta property="og:url" content="http://tassis.me/2019/04/23/typora-hexo-image-setting/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。 而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！">
+<meta property="og:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。  然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555951121467.png">
-<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555952375385.png">
-<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555952673534.png">
-<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/diagram.png">
-<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1555959596702.png">
-<meta property="og:updated_time" content="2019-04-25T09:29:37.153Z">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1556187402861.png">
+<meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1556190368633.png">
+<meta property="og:updated_time" content="2019-04-25T15:04:04.660Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Typora-Hexo 外連圖床的一種方案試做(一)">
-<meta name="twitter:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。 而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！">
-<meta name="twitter:image" content="http://media.tassis.me/typora-hexo-image-setting/1555951121467.png">
+<meta name="twitter:title" content="Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost">
+<meta name="twitter:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。  然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功">
+<meta name="twitter:image" content="http://media.tassis.me/typora-hexo-image-setting/1556187402861.png">
 
 
 
@@ -131,7 +128,7 @@
   };
 </script>
 
-  <title>Typora-Hexo 外連圖床的一種方案試做(一) | ＠邊緣沙威瑪</title>
+  <title>Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost | ＠邊緣沙威瑪</title>
   
 
 
@@ -324,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Typora-Hexo 外連圖床的一種方案試做(一)
+          <h1 class="post-title" itemprop="name headline">Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost
 
               
             
@@ -367,7 +364,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-25 17:29:37" itemprop="dateModified" datetime="2019-04-25T17:29:37+08:00">2019-04-25</time>
+                <time title="修改時間：2019-04-25 23:04:04" itemprop="dateModified" datetime="2019-04-25T23:04:04+08:00">2019-04-25</time>
               
             
           </span>
@@ -426,8 +423,8 @@
       
 
       
-        <p>一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間。</p>
-<p>而自從換成 Hexo + Typora編輯器後我也一直在尋找著類似的方案，但一直都沒有找到。既然找不到現成方案，那就自己做一個吧！</p>
+        <p>一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。 </p>
+<p>然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功能的，較為熱門的 typora 編輯器也僅支援 Mac 環境下的上傳功能。  因此自己製作了一款插件，既然沒有現有方案，就自己打造一個！</p>
 <a id="more"></a>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo X GithubPage + Typora 的部落格組合，在網路上也是挺盛行的，但是關於插入文章圖片這件事情，一直沒有一套較為明確的作法。網路上普遍的作法有兩種：</p>
 <ul>
@@ -441,37 +438,66 @@
 </li>
 <li><p>在 deploy 時自動將圖片上傳至圖床空間。</p>
 </li>
-<li>圖片上傳完畢後，自動將 markdown 中的本地路徑更改為 url。</li>
-<li>方便攜帶及修改，因為不一定會用同一臺電腦寫文章。</li>
+<li><p>圖片上傳完畢後，自動將 markdown 中的本地路徑更改為 url。</p>
+</li>
+<li><p>方便攜帶及修改，因為不一定會用同一臺電腦寫文章。</p>
+</li>
 </ul>
-<h2 id="Typora-編輯器設置"><a href="#Typora-編輯器設置" class="headerlink" title="Typora 編輯器設置"></a>Typora 編輯器設置</h2><p>Typora 編輯器預設會將圖片暫存至 &lt;系統使用者資料夾/.config/Typora&gt; 路徑之中。如圖：</p>
-<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555951121467.png" alt="1555951121467"></p>
-<p>檔案路徑又臭又長，會導致後續處理變得麻煩，同時為了集中管理，會希望能夠放在 hexo 專案內部。而幸運的是 Typora編輯器本身支援自定義圖片存放位置。首先在 hexo 專案根目錄下新增 assets 資料夾，並在文章頂部的 yaml 區塊插入以下兩個參數，並將路徑指過去：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">typora-root-url:</span>		    <span class="string">../../assets/</span>		<span class="comment"># 設置 typora 的圖片根目錄</span></span><br><span class="line"><span class="attr">typora-copy-images-to:</span> 	<span class="string">../../assets/&lt;name&gt;</span>	<span class="comment"># 設置這個路徑的話當插入圖片會自動將其複製到指定路徑。</span></span><br></pre></td></tr></table></figure>
-<p>如下圖：</p>
-<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555952375385.png" alt="1555952375385">)</p>
-<p>同時，為了避免又臭又長的絕對路徑，可以將 「檔案-&gt;偏好設定-&gt;優先使用相對路徑」開啟，利用相對路徑就可以大幅減短路徑的長度。</p>
-<p>當參數都設置好且使用相對路徑開啟後，插入圖片時路徑會變得如下：</p>
-<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555952673534.png" alt="1555952673534"></p>
-<p>路徑變得非常單純，後續處理也會相對簡單。</p>
-<h3 id="Hexo-Scaffolds-設置"><a href="#Hexo-Scaffolds-設置" class="headerlink" title="Hexo Scaffolds 設置"></a>Hexo Scaffolds 設置</h3><p>雖然使用 typora 的參數設置可以自訂圖片存放位置非常方便，但若每次新增文章時都必須要自己輸入一次欄位顯然非常麻煩，這邊可以結合 Hexo 的 Scaffolds 功能，讓 Hexo 在我們使用 hexo new 指令時，自動把參數設定好。</p>
-<p>開啟 &lt;hexo專案&gt;/scaffolds/post.md (其他的也可以自行設置)，將其內容修改如下：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">&#123;&#123;</span> <span class="string">title</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">&#123;&#123;</span> <span class="string">date</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">typora-root-url:</span> <span class="string">../../assets</span></span><br><span class="line"><span class="attr">typora-copy-images-to:</span> <span class="string">../../assets/&#123;&#123;</span> <span class="string">title</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">tags:</span></span><br></pre></td></tr></table></figure>
-<p>這樣當我們在運行 hexo new post &lt;檔案名稱&gt; 時 Typora-Hexo 外連圖床的一種方案試做(一) 欄位就會自動填入設定的檔案名稱。</p>
-<p>註：不過在 hexo new post 生成時 typora-copy-images-to 欄位的 title 會自動加入雙引號，這部份暫且不知如何解決。</p>
-<h2 id="代碼腳本"><a href="#代碼腳本" class="headerlink" title="代碼腳本"></a>代碼腳本</h2><blockquote>
-<p>github : <a href="https://github.com/Tassis/ssh-ihost" target="_blank" rel="noopener">傳送門</a></p>
+<h2 id="Typora-編輯器設置"><a href="#Typora-編輯器設置" class="headerlink" title="Typora 編輯器設置"></a>Typora 編輯器設置</h2><p>首先要對Typora插入圖片功能進行檔案路徑配置，點開下拉式選單，選擇 Copy image to custom folder，並在路徑上填入下面的路徑：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用 $&#123;filename&#125; 欄位，將資料夾以檔案名稱做區隔</span></span><br><span class="line">../../assets/<span class="variable">$&#123;filename&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/1556187402861.png" alt="1556187402861"></p>
+<p>依照上面 完成設置之後，每當插入圖片時就會變成相對資料夾路徑，且有檔案名稱資料夾做區隔，如下：</p>
+<p><img src="http://media.tassis.me/typora-hexo-image-setting/1556190368633.png" alt="1556190368633"></p>
+<p>但是這樣還不夠  「 ../../assets/ 」這樣的路徑還是有些不雅觀，可以透過設置 typora-root-url 來令其縮的更短。在 markdown 文件中頂部 yaml 區域增加 typora-root-url 標籤，如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: page1</span><br><span class="line">typora-root-url: ../../assets</span><br><span class="line">date: 2019-04-25 19:39:47</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>設置好後，插入圖片的路徑就可以縮短成如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![1556192699196](http://media.tassis.me/typora-hexo-image-setting/1556192699196.png</span><br></pre></td></tr></table></figure>
+<p>這樣 typora 編輯器便設定完成。　　但若每次寫文章，還要手動添加標籤，久了也是會嫌麻煩的。因此可以將標籤添加進 Hexo 的 scaffolds 這樣每次新增文章時就都會自動添加標籤了。</p>
+<h2 id="安裝-MD-SSH-IHOST-套件"><a href="#安裝-MD-SSH-IHOST-套件" class="headerlink" title="安裝 MD-SSH-IHOST 套件"></a>安裝 MD-SSH-IHOST 套件</h2><p>算是自己為了解決這次的問題所製作的插件，本插件僅提供兩個 function 調用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 運行 SFTP 上傳檔案的功能，開啟連線前會先檢查是否有檔案需要上傳。</span><br><span class="line">upload(config, callback)</span><br><span class="line"></span><br><span class="line"># 處理 markdown 中的路徑取代的功能</span><br><span class="line"># 依據 localrootDirectory 中的檔案名稱檢測對應名稱的.md 檔案並取代內容。</span><br><span class="line">refersh_path()</span><br></pre></td></tr></table></figure>
+<p>由於這是自己的第一個插件，如有可以改進的空間歡迎一起討論。</p>
+<p>在這邊附上原始碼：</p>
+<blockquote>
+<p>Github : <a href="https://github.com/Tassis/md-ssh-ihost" target="_blank" rel="noopener">傳送門</a></p>
 </blockquote>
-<p>本來一開始想用 Python 撰寫的，但 Hexo 本身就依賴於 NodeJS 環境，在這之上又多個 Python環境會非常的不方便。於是就直接使用 NodeJS 寫了，一邊查資料一邊撰寫，導致代碼有些雜亂。</p>
-<p>主要區分為兩部份，執行檔 .js 與配置檔 .json，執行檔的部份很單純，流程如圖：</p>
-<p><img src="http://media.tassis.me/typora-hexo-image-setting/diagram.png" alt="diagram"></p>
-<p>配置檔案的部份，具體如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"sftp"</span>: &#123;</span><br><span class="line">        "host": "localhost",					        // 連線的 Server IP</span><br><span class="line">        "username": "username",					      // 登入的使用者帳號</span><br><span class="line">        "localRootDirectory": "assets/",		  // 本地端的預設根目錄(通常指向上傳圖片的目錄)</span><br><span class="line">        "remoteRootDirectory": "remote_path",	// 遠端的預設根目錄(通常指向要上傳到的位置)</span><br><span class="line">        "privateKey": "private_key",			    // 使用個人私鑰的檔案位置</span><br><span class="line">        "passphrase": "key's password",			  // 私鑰的密碼</span><br><span class="line">        "ignore_rule":[							          // 要排除上傳的檔案</span><br><span class="line">            ".",</span><br><span class="line">            <span class="string">"node_modules"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    "common": &#123;</span><br><span class="line">        // 上傳的目標網域名稱(ex:http://172.68.152.49/) </span><br><span class="line">        "server_url": "url_name",				</span><br><span class="line">        "post_dir": "./source/_posts/",			// 本地端的 markdown 文章放置區</span><br><span class="line">        "removeImageOnSuccessful": true			// 是否要移除上傳完成的檔案？</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>將兩者放置於 hexo 專案的根目錄下，並配置好後運行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node deploy_pic.js</span><br></pre></td></tr></table></figure>
-<p>若一切配置正確則會開始上傳，最終顯示結果如下：</p>
-<p><img src="http://media.tassis.me/typora-hexo-image-setting/1555959596702.png" alt="1555959596702"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>就結果來說勉強滿足所有條件，但就方便性及配置性而言還遠遠不足，而且 Bug 及例外情況也不少，不過畢竟是第一版還可以慢慢的修正。後續在慢慢的補強吧…好累（躺</p>
+<h3 id="安裝-Installation"><a href="#安裝-Installation" class="headerlink" title="安裝 Installation"></a>安裝 Installation</h3><p>為了方便使用已經先提交到 npm上了，直接透過 npm 安裝即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install md-ssh-ihost</span><br></pre></td></tr></table></figure>
+<p>若使用 yarn 的話為：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add md-ssh-ihost</span><br></pre></td></tr></table></figure>
+<h3 id="使用方法-Usage"><a href="#使用方法-Usage" class="headerlink" title="使用方法 Usage"></a>使用方法 Usage</h3><p>新建一個 yourfile.js 檔案，輸入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ihost = <span class="built_in">require</span>(<span class="string">'ssh-ihost'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    base_url:                   <span class="string">"http://localhost"</span>,</span><br><span class="line">    localRootDirectory :        <span class="string">"./assets"</span>,</span><br><span class="line">    remoteRootDirectory:        <span class="string">"./www"</span>,</span><br><span class="line">    post_dir:                   <span class="string">"./source/_posts"</span>,</span><br><span class="line">    removeImageOnSuccessful:    <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    sftp : &#123;</span><br><span class="line">        host:                   <span class="string">"&lt;hostname&gt;"</span>,</span><br><span class="line">        username:               <span class="string">"&lt;username&gt;"</span>,</span><br><span class="line">        password:               <span class="string">"&lt;password&gt;"</span>,</span><br><span class="line">        privateKey:             <span class="string">"&lt;private_key&gt;"</span>,</span><br><span class="line">        passphrase:             <span class="string">"&lt;private_key_passphrase&gt;"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ihost.upload(config, <span class="function"><span class="keyword">function</span>(<span class="params">successful, failed</span>)</span>&#123;</span><br><span class="line">    ihost.refersh_path(successful, config);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>項目說明：</p>
+<ul>
+<li>base_url                        ：  相對路徑被替換成的 url 網址開頭 : ex: <a href="http://img.tassis.me" target="_blank" rel="noopener">http://img.tassis.me</a></li>
+<li>localRootDirectory      ： 本地端根目錄路徑，上傳檔案時會以此目錄為基準。</li>
+<li>remoteRootDirectory ： 遠端根目錄路徑，檔案會被上傳至這個路徑。</li>
+<li>post_dir                        ： markdown 存放的文件夾目錄</li>
+<li>removeImageOnSuccessful ： 是否移除上傳成功的檔案？(默認為 true )</li>
+</ul>
+<p>sftp :</p>
+<ul>
+<li>host                   ：  遠端主機 ip </li>
+<li>username                     ： 登入用的使用者帳號</li>
+<li>password                      ： 使用者密碼（若使用私鑰登入可不填寫）</li>
+<li>privateKey                    ： 使用的私鑰存放位置</li>
+<li>passphrase                  ： 若私鑰擁有密碼時可在此填入。</li>
+</ul>
+<p>另希望私鑰密碼需要手動輸入，可參考該插件 github頁面最下面的 example 設置：</p>
+<blockquote>
+<p>Github：<a href="https://github.com/steelbrain/node-ssh" target="_blank" rel="noopener">傳送門</a></p>
+</blockquote>
+<p>配置完成後，運行指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node &lt;yourfile&gt;.js</span><br></pre></td></tr></table></figure>
+<p>若 assets 資料夾中存在檔案便會自動上傳，並且自動更改 markdown 中對應的路徑。</p>
+<h2 id="與-Hexo-整合"><a href="#與-Hexo-整合" class="headerlink" title="與 Hexo 整合"></a>與 Hexo 整合</h2><p>雖然套件提供了自動上傳、自動修改路徑的功能，但仍舊需要手動調用，理想情況上是在 deploy 時自動將圖片發布至 Server ，因此以下提出兩種方案。</p>
+<h3 id="方案一：-編寫-shell-bat-檔案"><a href="#方案一：-編寫-shell-bat-檔案" class="headerlink" title="方案一： 編寫 shell / bat 檔案"></a>方案一： 編寫 shell / bat 檔案</h3><p>於 Hexo 專案根目錄中新增 deploy.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node yourfile.js</span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>此方案適用於有運用 shell / bat 檔案進行其他預處理的人。</p>
+<h3 id="方案二：-透過-hexo-plugin-功能註冊至-generator"><a href="#方案二：-透過-hexo-plugin-功能註冊至-generator" class="headerlink" title="方案二： 透過 hexo plugin 功能註冊至 generator"></a>方案二： 透過 hexo plugin 功能註冊至 generator</h3><p>於 Hexo 專案根目錄新增資料夾 scripts，並將 yourfile.js 檔案放入 scripts 資料夾中 。</p>
+<p>修改 yourfile.js 檔案如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ihost = <span class="built_in">require</span>(<span class="string">'ssh-ihost'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    base_url:                   <span class="string">"http://localhost"</span>,</span><br><span class="line">    localRootDirectory :        <span class="string">"./assets"</span>,</span><br><span class="line">    remoteRootDirectory:        <span class="string">"./www"</span>,</span><br><span class="line">    post_dir:                   <span class="string">"./source/_posts"</span>,</span><br><span class="line">    removeImageOnSuccessful:    <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    sftp : &#123;</span><br><span class="line">        host:                   <span class="string">"&lt;hostname&gt;"</span>,</span><br><span class="line">        username:               <span class="string">"&lt;username&gt;"</span>,</span><br><span class="line">        password:               <span class="string">"&lt;password&gt;"</span>,</span><br><span class="line">        privateKey:             <span class="string">"&lt;private_key&gt;"</span>,</span><br><span class="line">        passphrase:             <span class="string">"&lt;private_key_passphrase&gt;"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hexo.extend.generator.register(<span class="string">'deploy-images'</span>, (locals) =&gt; &#123;</span><br><span class="line">    ihost.upload(config, <span class="function"><span class="keyword">function</span>(<span class="params">successful, failed</span>)</span>&#123;</span><br><span class="line">        ihost.refersh_path(successful, config);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>這樣每當 Hexo 中的生成器被觸發時 (運行 hexo generator 及 hexo server 時) 就會自動將圖片上傳，並修改 markdown 檔案了。</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>目前製作完成後用起來還算堪用，也還沒有遇到什麼特別麻煩的問題。不過也許有什麼我沒有考量到的部份，若有什麽建議的話歡迎蒞臨指教。</p>
 
       
     </div>
@@ -727,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Typora-編輯器設置"><span class="nav-number">2.</span> <span class="nav-text">Typora 編輯器設置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-Scaffolds-設置"><span class="nav-number">2.1.</span> <span class="nav-text">Hexo Scaffolds 設置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代碼腳本"><span class="nav-number">3.</span> <span class="nav-text">代碼腳本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Typora-編輯器設置"><span class="nav-number">2.</span> <span class="nav-text">Typora 編輯器設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-MD-SSH-IHOST-套件"><span class="nav-number">3.</span> <span class="nav-text">安裝 MD-SSH-IHOST 套件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Installation"><span class="nav-number">3.1.</span> <span class="nav-text">安裝 Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法-Usage"><span class="nav-number">3.2.</span> <span class="nav-text">使用方法 Usage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#與-Hexo-整合"><span class="nav-number">4.</span> <span class="nav-text">與 Hexo 整合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一：-編寫-shell-bat-檔案"><span class="nav-number">4.1.</span> <span class="nav-text">方案一： 編寫 shell / bat 檔案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二：-透過-hexo-plugin-功能註冊至-generator"><span class="nav-number">4.2.</span> <span class="nav-text">方案二： 透過 hexo plugin 功能註冊至 generator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結語"><span class="nav-number">5.</span> <span class="nav-text">結語</span></a></li></ol></div>
             
 
           </div>
