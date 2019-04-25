@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。  然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功">
-<meta name="keywords" content="Hexo,Blog,Typora,Nodejs">
+<meta name="keywords" content="Typora,Nodejs,Blog,Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost">
 <meta property="og:url" content="http://tassis.me/2019/04/23/typora-hexo-image-setting/index.html">
@@ -399,6 +399,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">評論數：</span>
+                <a href="/2019/04/23/typora-hexo-image-setting/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/23/typora-hexo-image-setting/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -521,13 +534,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
-          
             <a href="/tags/Typora/" rel="tag"># Typora</a>
           
             <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
+          
+            <a href="/tags/Blog/" rel="tag"># Blog</a>
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
         </div>
       
@@ -569,6 +582,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
 
   
 
@@ -906,6 +926,29 @@
   
 
   
+  
+  <script id="dsq-count-scr" src="https://tassis.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://tassis.me/2019/04/23/typora-hexo-image-setting/";
+    this.page.identifier = "2019/04/23/typora-hexo-image-setting/";
+    this.page.title = 'Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://tassis.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
 
 
   

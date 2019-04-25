@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="這次將原本 Jekyll 架設的筆記存放區替換成現在的 Hexo 了，不得不說優點還真的不少，不僅好看的佈景有很多，還有不少方便的功能是 Jekyll 所沒有的。像是可以直接透過 command 來新增 post 的功能真的是方便了不少。 由於目前剛替換完成，某些部份還需要調整及習慣。 不過會開始緩慢的補上最近的研究筆記。">
-<meta name="keywords" content="Hexo,Blog">
+<meta name="keywords" content="Blog,Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「雜」 網站重架設 - 更換為 hexo">
 <meta property="og:url" content="http://tassis.me/2019/02/03/first-post-hello-hexo/index.html">
@@ -389,6 +389,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">評論數：</span>
+                <a href="/2019/02/03/first-post-hello-hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/03/first-post-hello-hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -438,9 +451,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
             <a href="/tags/Blog/" rel="tag"># Blog</a>
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
         </div>
       
@@ -482,6 +495,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
 
   
 
@@ -793,6 +813,29 @@
   
 
   
+  
+  <script id="dsq-count-scr" src="https://tassis.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://tassis.me/2019/02/03/first-post-hello-hexo/";
+    this.page.identifier = "2019/02/03/first-post-hello-hexo/";
+    this.page.title = '「雜」 網站重架設 - 更換為 hexo';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://tassis.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
 
 
   
