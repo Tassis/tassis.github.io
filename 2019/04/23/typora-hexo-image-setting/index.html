@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。  然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功">
-<meta name="keywords" content="Typora,Nodejs,Blog,Hexo">
+<meta name="keywords" content="Hexo,Blog,Typora,Nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost">
 <meta property="og:url" content="http://tassis.me/2019/04/23/typora-hexo-image-setting/index.html">
@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1556187402861.png">
 <meta property="og:image" content="http://media.tassis.me/typora-hexo-image-setting/1556190368633.png">
-<meta property="og:updated_time" content="2019-04-25T15:04:04.660Z">
+<meta property="og:updated_time" content="2019-04-26T12:34:35.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost">
 <meta name="twitter:description" content="一般網站如果圖片量過大，都會將圖片做分流，上傳至圖床空間用以節省流量。還記得當初使用 Wordpress 時，可以搭配 Window Live Writer (WLW) 設定圖床空間的 FTP，在發布文章時就會自動將圖片上傳至圖床空間，這項功能在當時特別的好用，唯一的缺點就是需要有一個支援 FTP 上傳的HttpServer。  然而目前市面上的 markdown 編輯器很少有支援 Ftp 上傳功">
@@ -364,7 +364,7 @@
                 
                   <span class="post-meta-item-text">更新於</span>
                 
-                <time title="修改時間：2019-04-25 23:04:04" itemprop="dateModified" datetime="2019-04-25T23:04:04+08:00">2019-04-25</time>
+                <time title="修改時間：2019-04-26 20:34:35" itemprop="dateModified" datetime="2019-04-26T20:34:35+08:00">2019-04-26</time>
               
             
           </span>
@@ -464,7 +464,7 @@
 <p>但是這樣還不夠  「 ../../assets/ 」這樣的路徑還是有些不雅觀，可以透過設置 typora-root-url 來令其縮的更短。在 markdown 文件中頂部 yaml 區域增加 typora-root-url 標籤，如下：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: page1</span><br><span class="line">typora-root-url: ../../assets</span><br><span class="line">date: 2019-04-25 19:39:47</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 <p>設置好後，插入圖片的路徑就可以縮短成如下：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![1556192699196](http://media.tassis.me/typora-hexo-image-setting/1556192699196.png</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">1556192699196</span>](<span class="link">/typora-hexo-image-setting/1556192699196.png</span>)</span><br></pre></td></tr></table></figure>
 <p>這樣 typora 編輯器便設定完成。　　但若每次寫文章，還要手動添加標籤，久了也是會嫌麻煩的。因此可以將標籤添加進 Hexo 的 scaffolds 這樣每次新增文章時就都會自動添加標籤了。</p>
 <h2 id="安裝-MD-SSH-IHOST-套件"><a href="#安裝-MD-SSH-IHOST-套件" class="headerlink" title="安裝 MD-SSH-IHOST 套件"></a>安裝 MD-SSH-IHOST 套件</h2><p>算是自己為了解決這次的問題所製作的插件，本插件僅提供兩個 function 調用：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 運行 SFTP 上傳檔案的功能，開啟連線前會先檢查是否有檔案需要上傳。</span><br><span class="line">upload(config, callback)</span><br><span class="line"></span><br><span class="line"># 處理 markdown 中的路徑取代的功能</span><br><span class="line"># 依據 localrootDirectory 中的檔案名稱檢測對應名稱的.md 檔案並取代內容。</span><br><span class="line">refersh_path()</span><br></pre></td></tr></table></figure>
@@ -534,13 +534,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Typora/" rel="tag"># Typora</a>
-          
-            <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
             <a href="/tags/Blog/" rel="tag"># Blog</a>
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Typora/" rel="tag"># Typora</a>
+          
+            <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
           
         </div>
       
@@ -943,7 +943,25 @@
     (d.head || d.body).appendChild(s);
   }
   
-    loadComments();
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
   
 </script>
 
