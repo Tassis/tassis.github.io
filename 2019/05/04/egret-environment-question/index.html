@@ -96,18 +96,22 @@
 
 
 
-  <meta name="description" content="這次將原本 Jekyll 架設的筆記存放區替換成現在的 Hexo 了，不得不說優點還真的不少，不僅好看的佈景有很多，還有不少方便的功能是 Jekyll 所沒有的。像是可以直接透過 command 來新增 post 的功能真的是方便了不少。 由於目前剛替換完成，某些部份還需要調整及習慣。 不過會開始緩慢的補上最近的研究筆記。">
-<meta name="keywords" content="Hexo,Blog">
+  <meta name="description" content="還記得去年的五月剛取得第一份工作踏入了遊戲業，使用的並不是大名鼎鼎的 Unity3D 也不是 Unreal 而是鮮少聽到的 Egret，剛開始使用時，除了 Typescript 的 this 修飾子及陣列的相關操作地雷要避開之外，基本沒有什麼問題，官方自帶的 Wing3 編輯器也自帶 exml 編輯功能，排版上也很方便。 但是當到了開發中期專案的內容越來越多時，就開始有些令人焦躁的問題一個接一個的">
+<meta name="keywords" content="Typescript,NodeJS,Vscode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「雜」 網站重架設 - 更換為 hexo">
-<meta property="og:url" content="http://tassis.me/2019/02/03/first-post-hello-hexo/index.html">
+<meta property="og:title" content="Egret 開發環境的編譯、圖集問題">
+<meta property="og:url" content="http://tassis.me/2019/05/04/egret-environment-question/index.html">
 <meta property="og:site_name" content="＠邊緣沙威瑪">
-<meta property="og:description" content="這次將原本 Jekyll 架設的筆記存放區替換成現在的 Hexo 了，不得不說優點還真的不少，不僅好看的佈景有很多，還有不少方便的功能是 Jekyll 所沒有的。像是可以直接透過 command 來新增 post 的功能真的是方便了不少。 由於目前剛替換完成，某些部份還需要調整及習慣。 不過會開始緩慢的補上最近的研究筆記。">
+<meta property="og:description" content="還記得去年的五月剛取得第一份工作踏入了遊戲業，使用的並不是大名鼎鼎的 Unity3D 也不是 Unreal 而是鮮少聽到的 Egret，剛開始使用時，除了 Typescript 的 this 修飾子及陣列的相關操作地雷要避開之外，基本沒有什麼問題，官方自帶的 Wing3 編輯器也自帶 exml 編輯功能，排版上也很方便。 但是當到了開發中期專案的內容越來越多時，就開始有些令人焦躁的問題一個接一個的">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-04-24T12:45:05.405Z">
+<meta property="og:image" content="http://media.tassis.me/egret-environment-question/1556973449019.png">
+<meta property="og:image" content="http://media.tassis.me/egret-environment-question/1556976515007.png">
+<meta property="og:image" content="http://media.tassis.me/egret-environment-question/1556976526348.png">
+<meta property="og:updated_time" content="2019-05-04T14:43:39.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「雜」 網站重架設 - 更換為 hexo">
-<meta name="twitter:description" content="這次將原本 Jekyll 架設的筆記存放區替換成現在的 Hexo 了，不得不說優點還真的不少，不僅好看的佈景有很多，還有不少方便的功能是 Jekyll 所沒有的。像是可以直接透過 command 來新增 post 的功能真的是方便了不少。 由於目前剛替換完成，某些部份還需要調整及習慣。 不過會開始緩慢的補上最近的研究筆記。">
+<meta name="twitter:title" content="Egret 開發環境的編譯、圖集問題">
+<meta name="twitter:description" content="還記得去年的五月剛取得第一份工作踏入了遊戲業，使用的並不是大名鼎鼎的 Unity3D 也不是 Unreal 而是鮮少聽到的 Egret，剛開始使用時，除了 Typescript 的 this 修飾子及陣列的相關操作地雷要避開之外，基本沒有什麼問題，官方自帶的 Wing3 編輯器也自帶 exml 編輯功能，排版上也很方便。 但是當到了開發中期專案的內容越來越多時，就開始有些令人焦躁的問題一個接一個的">
+<meta name="twitter:image" content="http://media.tassis.me/egret-environment-question/1556973449019.png">
 
 
 
@@ -115,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://tassis.me/2019/02/03/first-post-hello-hexo/">
+  <link rel="canonical" href="http://tassis.me/2019/05/04/egret-environment-question/">
 
 
 
@@ -125,7 +129,7 @@
   };
 </script>
 
-  <title>「雜」 網站重架設 - 更換為 hexo | ＠邊緣沙威瑪</title>
+  <title>Egret 開發環境的編譯、圖集問題 | ＠邊緣沙威瑪</title>
   
 
 
@@ -301,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/02/03/first-post-hello-hexo/">
+    <link itemprop="mainEntityOfPage" href="http://tassis.me/2019/05/04/egret-environment-question/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tassis">
@@ -318,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">「雜」 網站重架設 - 更換為 hexo
+          <h1 class="post-title" itemprop="name headline">Egret 開發環境的編譯、圖集問題
 
               
             
@@ -344,24 +348,12 @@
                 
               
 
-              <time title="創建時間：2019-02-03 00:13:02" itemprop="dateCreated datePublished" datetime="2019-02-03T00:13:02+08:00">2019-02-03</time>
+              <time title="創建時間：2019-05-04 19:11:00 / 修改時間：22:43:39" itemprop="dateCreated datePublished" datetime="2019-05-04T19:11:00+08:00">2019-05-04</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新於</span>
-                
-                <time title="修改時間：2019-04-24 20:45:05" itemprop="dateModified" datetime="2019-04-24T20:45:05+08:00">2019-04-24</time>
               
             
           </span>
@@ -378,7 +370,14 @@
                 <span class="post-meta-item-text">分類於</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/網站公告/" itemprop="url" rel="index"><span itemprop="name">網站公告</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/遊戲開發/" itemprop="url" rel="index"><span itemprop="name">遊戲開發</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/遊戲開發/Egret/" itemprop="url" rel="index"><span itemprop="name">Egret</span></a></span>
 
                 
                 
@@ -397,8 +396,8 @@
                 </span>
             
                 <span class="post-meta-item-text">評論數：</span>
-                <a href="/2019/02/03/first-post-hello-hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/03/first-post-hello-hexo/" itemprop="commentCount"></span>
+                <a href="/2019/05/04/egret-environment-question/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/04/egret-environment-question/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -426,8 +425,38 @@
       
 
       
-        <p>這次將原本 Jekyll 架設的筆記存放區替換成現在的 Hexo 了，不得不說優點還真的不少，不僅好看的佈景有很多，還有不少方便的功能是 Jekyll 所沒有的。像是可以直接透過 command 來新增 post 的功能真的是方便了不少。</p>
-<p>由於目前剛替換完成，某些部份還需要調整及習慣。 不過會開始緩慢的補上最近的研究筆記。</p>
+        <p>還記得去年的五月剛取得第一份工作踏入了遊戲業，使用的並不是大名鼎鼎的 Unity3D 也不是 Unreal 而是鮮少聽到的 Egret，剛開始使用時，除了 Typescript 的 this 修飾子及陣列的相關操作地雷要避開之外，基本沒有什麼問題，官方自帶的 Wing3 編輯器也自帶 exml 編輯功能，排版上也很方便。</p>
+<p>但是當到了開發中期專案的內容越來越多時，就開始有些令人焦躁的問題一個接一個的跑出來，這邊就稍微來談談一些令人煩躁的 Egret 問題以及解決 / 替代方案。</p>
+<h2 id="問題一：編譯時間越來越長"><a href="#問題一：編譯時間越來越長" class="headerlink" title="問題一：編譯時間越來越長"></a>問題一：編譯時間越來越長</h2><p>這個問題相信有用過 egret 開發的人一定都會遇上的情況。明明沒有修改多少代碼，但編譯卻出乎意料的久，短則1秒、8秒，長則10秒到60秒都有。 然而有些 Bug 並不是一次兩次就能修正完畢的（特別是圖像偏移、特效播放等情況）若每次調整編譯都要 10 多秒，來來回回個 20~30 次，累積起來也非常可觀。</p>
+<p><img src="http://media.tassis.me/egret-environment-question/1556973449019.png" alt="1556973449019"></p>
+<p>這個原因是由於 egret build 指令不單單會執行 .ts 檔案的編譯工作，還會將其他的檔案一併處理，然而在除錯的期間其實並不需要處理其他的檔案，因此決定將編譯代碼的工作外置出來，而要另外編譯 .ts 檔案就需要 NodeJS並安裝 Typescript 套件（雖然在安裝 egret 時官方已經有偷偷安裝了 nodeJS，但為了將環境區隔開因此還是另外安裝一個），因此先至 NodeJS官方網站下載並安裝：</p>
+<blockquote>
+<p>NodeJS 官方網站: <a href="https://nodejs.org/en/" target="_blank" rel="noopener">傳送門</a></p>
+</blockquote>
+<p>安裝完畢後，可以測試一下，於終端機輸入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm</span><br></pre></td></tr></table></figure>
+<p>測試是否有正確安裝，若有正確安裝的話便可運行以下指令安裝 Typescript 套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install typescript</span><br></pre></td></tr></table></figure>
+<p>安裝完成後便可使用 VScode 來運行 build task 來編譯 .ts檔案了。按下 Ctrl + Shift + P 打開指令面板輸入：</p>
+<p><img src="http://media.tassis.me/egret-environment-question/1556976515007.png" alt="1556976515007"> </p>
+<p><img src="http://media.tassis.me/egret-environment-question/1556976526348.png" alt="1556976526348"></p>
+<p>或者在沒有預設 task 的情況下按下 Ctrl+Shift+B 開啟 task 面板，選擇 tsc build 進行編譯。</p>
+<p>一般來說 egret 專案的 tsconfig 預設是已經配置好的，直接選擇 build 根目錄的 tsconfig 即可。但是每次要編譯時都要輸入指令 / 按快捷鍵其實也挺繁瑣的，這時則可以選擇 tsc watch，這樣 VScode 會開啟執行緒監聽每次的檔案變動，每當 .ts 檔案存檔時會自動將檔案編譯為 .js 檔案。</p>
+<p>解決完了編譯問題，那麼要怎麼進行 Debug 呢？ 這時可以直接在 egret 專案根目錄輸入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">egret startserver</span><br></pre></td></tr></table></figure>
+<p>開啟測試伺服器，每當修改 .ts 檔案後，重新整理頁面就能馬上看到修改後的效果 。</p>
+<h2 id="問題二：圖集刷新過於被動"><a href="#問題二：圖集刷新過於被動" class="headerlink" title="問題二：圖集刷新過於被動"></a>問題二：圖集刷新過於被動</h2><p>在實務上為了減少 HTTP 的檔案請求次數，一般會將許多零零散散的小圖打包成一組圖集。 在遊戲公司任職時曾經有一段時期，美術的素材因為上層的要求而頻繁變動，每當素材修改後都需要重新打包，新增、刪除、key 修改…等各種情況，每當重新打包完成後，卻還要到 res.json 中手動將 sheet 刷新才會出現正確的 subkey ，偶爾一兩個檔案還好，當許多檔案一次覆蓋時還要個別點選就是一種麻煩，惰性滿點的我肯定是無法接受的。</p>
+<p>幸好，Json檔案的處理並不困難，只需要根據 sheet 的 url 欄位找到對應的 Json 檔案並將全部的 key 取出來即可，非常簡單。 以下直接上代碼：</p>
+<script src="https://gist.github.com/Tassis/7e1d8a783e291b118ae93956b85faf70.js"></script>
+
+<blockquote>
+<p>Git-gist : <a href="https://gist.github.com/Tassis/7e1d8a783e291b118ae93956b85faf70" target="_blank" rel="noopener">傳送門</a></p>
+</blockquote>
+<p> 下載下來後放至 egret 專案根目錄，運行指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node refresh_res.js</span><br></pre></td></tr></table></figure>
+<p>便會自動掃描 resource 資料夾下所有 .res.json 檔案並將 subkeys 設置為正確的值。</p>
+<p>註： 可以搭配 VSCode 的插件 <a href="https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave" target="_blank" rel="noopener">Run On Save</a> 於按下存檔時自動執行，來節省還要點擊檔案的時間。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>這兩項是至我離職以前為止，我認為使用 Egret 開發最為麻煩的事情。 不過由於已經離職過了兩個多月了，或許 Egret 官方也已經有解決的方案也說不定。若有其他的方案的話，歡迎分享～</p>
 
       
     </div>
@@ -451,9 +480,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Typescript/" rel="tag"># Typescript</a>
           
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+            <a href="/tags/Vscode/" rel="tag"># Vscode</a>
           
         </div>
       
@@ -466,15 +497,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/23/typora-hexo-image-setting/" rel="next" title="Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost">
+                <i class="fa fa-chevron-left"></i> Typora 與 Hexo 外連圖床的方案試做 - md-ssh-ihost
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/04/golang-day1/" rel="prev" title="Golang 初學筆記（一）on Ubuntu 16.04">
-                Golang 初學筆記（一）on Ubuntu 16.04 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,8 +556,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -676,6 +716,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#問題一：編譯時間越來越長"><span class="nav-number">1.</span> <span class="nav-text">問題一：編譯時間越來越長</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題二：圖集刷新過於被動"><span class="nav-number">2.</span> <span class="nav-text">問題二：圖集刷新過於被動</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -829,9 +886,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://tassis.me/2019/02/03/first-post-hello-hexo/";
-    this.page.identifier = "2019/02/03/first-post-hello-hexo/";
-    this.page.title = '「雜」 網站重架設 - 更換為 hexo';
+    this.page.url = "http://tassis.me/2019/05/04/egret-environment-question/";
+    this.page.identifier = "2019/05/04/egret-environment-question/";
+    this.page.title = 'Egret 開發環境的編譯、圖集問題';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
